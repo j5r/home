@@ -1,0 +1,242 @@
+\chapter{Sistemas lineares: estimação e controle}
+
+Neste capítulo estudamos o caso especial de informação parcial quando as equações de estado são lineares e os processos de ruídos de entrada e observação são processos Gaussianos independentes. A distribuição condicional do estado é dada pelo \textbf{filtro de Kalman} e é finito-dimensional. A função dual de controle não está presente. Consequentemente, o cálculo do controle ótimo se torna bem simples; quando o custo é quadrático, encontramos uma fórmula fechada. Políticas de controle de mínima variância para modelos ARMAX \nomenclature{ARMAX}{modelo autoregressivo com média móvel e entradas exógenas} são derivados. Por fim, apresentamos o algoritmo de Levinson e o filtro acoplado para problemas de estimação que surgem em aplicações de processamento de sinais.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{O modelo linear Gaussiano}
+Considere o sistema estocástico
+\[
+\begin{aligned}
+x_{k+1}&=A_kx_k+B_ku_k+G_kw_k,\\
+y_k&=C_kx_k+H_kv_k,
+\end{aligned}
+\]
+em que $x_k\in\RR^{n}$, $u_k\in\RR^m$, $y_k\in\RR^p$, $w_k\in\RR^g$, $v_k\in\RR^h$, $A_k,\;B_k,\;G_k,\;C_k$ e $H_k$ são possivelmente variantes no tempo, matrizes conhecidas de dimensões apropriadas. As variáveis aleatórias básicas $\{x_0,w_0,\dots,v_0,\dots\}$ são Gaussianas e independentes, com
+\[
+x_0\sim N(0,\Sigma_0), \quad w_k\sim N(0,Q), \quad v_k\sim N(0,R).
+\]
+As matrizes de covariância $\Sigma_0,\;Q$ e $R$ são todas conhecidas.
+
+A informação disponível no instante $k$ é $z^k=(y^k,u^{k-1})$, e o estado da informação é a densidade condicional $p_{k|k}(x_k|z^k)$. Queremos calcular a sua função de transição $T_k$ especificado no Lema \ref{6.5.10}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{O caso $u=0$}
+
+Suponha que $u_k\equiv 0$. O sistema de equações fica
+\begin{eqnarray}
+x_{k+1}&=&A_kx_k+G_kw_k,\label{7.2.1}\\
+y_k&=&C_kx_k+H_kv_k.\label{7.2.2}
+\end{eqnarray}
+A informação disponível é $z^k=y^k$. As variáveis aleatórias $x_k,\;x_{k+1}$ e $y_k$ são conjuntamente Gaussianas. Assim, as densidades condicionais são também Gaussianas; denotamos por 
+\[
+\begin{aligned}
+p_{k|k}(x_k\;|\;y^k)&\sim N(x_{k|k}, \Sigma_{k|k}), \mbox{ e}\\
+p_{k+1|k}(x_{k+1}\;|\;y^k)&\sim N(x_{k+1|k}, \Sigma_{k+1|k}).
+\end{aligned}
+\]
+
+Por definição,
+\begin{eqnarray}
+x_{k|k} &:=& \E(x_k\;|\;y^k), \mbox{ e }\nonumber\\
+\Sigma_{k|k} &:=& \E((x_k-x_{k|k})(x_k-x_{k|k})^T\;|\;y^k).\label{7.2.3}
+\end{eqnarray}
+Ou seja, a média condicional de $x_k$ dado $y^k$ é $x_{k|k}$, enquanto a covariância condicional é $\Sigma_{k|k}$. Similarmente,
+\begin{eqnarray}
+x_{k+1|k} &:=& \E(x_{k+1}\;|\;y^k), \mbox{ e }\nonumber\\
+\Sigma_{k+1|k} &:=& \E((x_{k+1}-x_{k+1|k})(x_{k+1}-x_{k+1|k})^T\;|\;y^k).\label{7.2.4}
+\end{eqnarray}
+
+Para obter a fórmula recursiva $T_k$ para as densidades condicionais, pode-se aplicar as fórmulas \eqref{6.5.7} e \eqref{6.5.8}. É mais fácil e mais instrutivo proceder diretamente usando o seguinte fato.
+
+\begin{Lema}\label{7.2.5}
+Sejam $x,\;y$ variáveis aleatórias conjuntamente Gaussianas, com $x\sim N(\wb x, \Sigma_x)$, $y\sim N(\wb y, \Sigma_y)$,
+$\Sigma_{xy}:=\cov(x,y)=\E(x-\wb x)(y-\wb y)^T$. Faça $\wh x:=\E(x\;|\;y)$ e $\wt x:=x-\wh x$. Então 
+\begin{equation}\label{7.2.6}
+\wh x = \wb x+\Sigma_{xy}\Sigma^{-1}_y(y-\wb y).
+\end{equation}
+
+Além disso, $\wt x$ é independente de $y$, e consequentemente também de $\wh x$, e $\wt x\sim N(0,\Sigma_{\wt x})$, em que
+\begin{equation}\label{7.2.7}
+\Sigma_{\wt x} := \Sigma_x - \Sigma_{xy}\Sigma_y^{-1}\Sigma_{xy}^T.
+\end{equation}
+\end{Lema}
+\begin{Dem}
+Seja $\wh v:=\wb x+\Sigma_{xy}\Sigma^{-1}_y(y-\wb y)$ e $\wt v:= x-\wh v$. Claramente $\E\wt v=0$. Também
+\[
+\E\wt v(y-\wb y)^T = \E(x-\wb x)(y-\wb y)^T-\Sigma_{xy}\Sigma^{-1}_y\E(y-\wb y)(y-\wb y)^T=0,
+\]
+que, como são conjuntamente Gaussianos, prova que $\wt v$ e $y$ são independentes. Com isso, $\wh x=\E(x\;|\;y)=\E(\wh v+\wt v\;|\;y)=\wh v+\E(\wt v\;|\;y)=\wh v$. Isso prova \eqref{7.2.6}.  Como $\wh x$ e $\wt x$  são independentes, $\cov(x)=\cov(\wh x)+\cov(\wt x)$ e então usamos \eqref{7.2.6} para obter \eqref{7.2.7}.
+\end{Dem}
+\begin{Exercicio}\label{7.2.8}
+Sejam $x,\;y$ e $z$ conjuntamente Gaussianas com $y$ e $z$ independentes. Seja $\wh x:=\E(x\;|\;y,z)$, $\wt x:=x-\wh x$. Então
+\[
+\begin{aligned}
+\wh x &= \wb x + \Sigma_{xy}\Sigma_{y}^{-1}(y-\wb y) + \Sigma_{xz}\Sigma_{z}^{-1}(z-\wb z), \\
+\Sigma_{\wt x} &= \Sigma_{x} - \Sigma_{xy}\Sigma_{y}^{-1}\Sigma_{xy}^T  - \Sigma_{xz}\Sigma_{z}^{-1}\Sigma_{xz}^T .
+\end{aligned}
+\]
+\rm[Dica: Aplique o Lema \ref{7.2.5} em $x$ e $(y,z)$.]
+\end{Exercicio}
+
+
+Agora obteremos a função de transição $T_k$ em diversas etapas.
+
+\noindent{\bf \#Etapa 1}
+
+De \eqref{7.2.1}, 
+\[
+\E(x_{k+1}\;|\;y^k)=A_k\E(x_{k}\;|\;y^k) + G_k\E(w_{k}\;|\;y^k).
+\]
+O  último termo desaparece, pois $w_k$ e $y^k$ são independentes, e então
+\begin{equation}\label{7.2.9}
+x_{k+1|k} = A_kx_{k|k}.
+\end{equation}
+Por conveniência, denote
+\begin{equation}\label{7.2.10}
+\wt x_{k+1|k}:=x_{k+1}-x_{k+1|k},\qquad
+\wt x_{k|k} := x_{k} - x_{k|k}.
+\end{equation}
+
+De \eqref{7.2.10}, \eqref{7.2.1} e \eqref{7.2.9}, temos que
+\[
+\wt x_{k+1|k} = A_kx_k + G_kw_k-A_kx_{k|k} = A_k\wt x_{k|k}+G_kw_k.
+\]
+Como os últimos dois termos da igualdade acima são independentes,
+\begin{equation}\label{7.2.11}
+\Sigma_{k+1|k} = A_k\Sigma_{k|k}A_k^T + G_kQG_k^T.
+\end{equation}
+
+
+
+\noindent{\bf \#Etapa 2}
+
+Denote
+\begin{equation}\label{7.2.12}
+y_{k|k-1} := \E(y_k\;|\;y^{k-1}), \quad \wt y_{k|k-1}:= y_k-y_{k|k-1}.
+\end{equation}
+Relembre
+\[
+y_k=C_kx_k+H_kv_k.
+\]
+Como $y^{k-1}$ e $v_k$ são independentes, isso nos dá
+\begin{eqnarray}\label{7.2.13}
+y_{k|k-1} &=& C_kx_{k|k-1}, \nonumber\\
+\wt y_{k|k-1} &=& C_k(x_k-x_{k|k-1}) + H_kv_k=C_k\wt x_{k|k-1}+H_kv_k.
+\end{eqnarray}
+Novamente, como os últimos dois termos da igualdade acima são independentes,
+\begin{equation}\label{7.2.14}
+\Sigma^y_{k|k-1} := \cov(\wt y_{k|k-1})=C_k\Sigma_{k|k-1}C_k^T+H_kRH_k^T.
+\end{equation}
+
+De \eqref{7.2.13} também obtemos
+\begin{equation}\label{7.2.15}
+\E x_k\wt y_{k|k-1}^T = \E x_k(C_k\wt x_{k|k-1})^T + \E x_k(H_kv_k)^T.
+\end{equation}
+
+Agora, como $x_k = x_{k|k-1}+\wt x_{k|k-1}$ por \eqref{7.2.10}, com os dois termos da direita sendo independentes pelo Lema \ref{7.2.5}, então $\E x_k\wt x_{k|k-1}^T=\Sigma_{k|k-1}$. E também $x_k$ e $v_k$ são independentes. Usando  \eqref{7.2.15}, nos dá
+\begin{equation}\label{7.2.16}
+\E x_k\wt y_{k|k-1}^T = \Sigma_{k|k-1}C_k^T.
+\end{equation}
+
+\noindent{\bf \#Etapa 3}
+
+De \eqref{7.2.12}, vemos que $y^k$ e $(y^{k-1},\wt y_{k|k-1})$ são funções uma da outra, isto é, conhecendo-se uma delas, pode-se determinar a outra e vice-versa. Assim, as informações que uma ou a outra trazem são equivalentes e com isso
+\[
+x_{k|k}=\E(x_k\;|\;y^{k-1},\wt y_{k|k-1}).
+\]
+Além disso, por \eqref{7.2.5}, $y^{k-1}$ e $\wt y_{k|k-1}$ são independentes e por \eqref{7.2.8}
+\begin{eqnarray}
+x_{k|k} &=&	\E(x_k\;|\;y^{k-1}) + (\E x_k\wt y_{k|k-1}^T)(\Sigma_{k|k-1}^y)^{-1} \wt y_{k|k-1}^T,\label{7.2.17}\\
+\Sigma_{k|k} &=& \Sigma_{k|k-1} - (\E x_k\wt y_{k|k-1}^T)(\Sigma_{k|k-1}^y)^{-1}(\E x_k\wt y_{k|k-1}^T)^T. \label{7.2.18}
+\end{eqnarray}
+Usando \eqref{7.2.14} e \eqref{7.2.16},
+\begin{eqnarray}
+x_{k|k} &=&	x_{k|k-1}+\Sigma_{k|k-1}C_k^T\big[C_k\Sigma_{k|k-1}C_k^T+H_kRH_k^T\big]^{-1}\wt y_{k|k-1},
+\label{7.2.19}\\
+\Sigma_{k|k} &=& \Sigma_{k|k-1} - \Sigma_{k|k-1}C_k^T\big[C_k\Sigma_{k|k-1}C_k^T+H_kRH_k^T\big]^{-1}C_k\Sigma_{k|k-1}^T. \label{7.2.20}
+\end{eqnarray}
+
+
+
+\begin{Teo}[Filtro de Kalman]\label{7.2.21}
+A densidade condicional $p_{k|k}\sim N(x_{k|k}, \Sigma_{k|k})$ pode ser obtida das equações recursivas a seguir.
+\begin{eqnarray}
+x_{k+1|k+1} &=&A_kx_{k|k}+L_{k+1}[y_{k+1}-C_{k+1}A_kx_{k|k}]\label{7.2.22},\\
+x_{0|0}&=& L_0y_0\label{7.2.23},\\
+\Sigma_{k+1|k+1} &=& (I-L_{k+1}C_{k+1})\Sigma_{k+1|k}\label{7.2.24},\\
+\Sigma_{k+1|k}&=& A_k\Sigma_{k|k}A_k^T+G_kQG_k^T\label{7.2.25},\\
+\Sigma_{0|0} &=& (I-L_{0}C_{0})\Sigma_{0} \label{7.2.26},
+\end{eqnarray}
+em que
+\begin{eqnarray}
+L_{k}&=& \Sigma_{k|k-1}C_k^T[C_k\Sigma_{k|k-1}C_k^T+H_kRH_k^T]^{-1}\label{7.2.27},\\
+L_0 &=& \Sigma_0C_0^T[C_0\Sigma_0C_0^T+H_0RH_0^T]^{-1} \label{7.2.28}.
+\end{eqnarray}
+\end{Teo}
+
+\begin{Dem}
+Para $k\ge0$, por \eqref{7.2.9},
+\[
+\wt y_{k+1|k} = y_{k+1} - y_{k+1|k} = y_{k+1} - C_{k+1}x_{k+1|k} = y_{k+1} - C_{k+1}A_kx_{k|k}.
+\]
+Substituindo essa em \eqref{7.2.19} nos dá \eqref{7.2.22}.
+\end{Dem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

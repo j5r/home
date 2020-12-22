@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JuLHeS</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                text-decoration: none;
+                }
+            iframe{
+                width: auto;
+                height: auto;
+                }
+            nav{
+                position: fixed;
+                top: 0;
+                left: -20vw;
+                height: 100%;
+                width: 20vw;
+                background: #ccd9;
+                opacity: 10%;
+                transition: all 1s;
+                z-index: 1;
+                }
+            nav ul{
+                position: fixed;
+                top: 20vh;
+                margin-left: 4vmin;
+
+                }
+            nav ul li a{
+                font-size: 20px;
+                color: #fff;
+                font-weight: bold;
+                }
+            input{
+                display: none;
+                }
+            label img{
+                position: fixed;
+                top: 8vmin;
+                left: 4vmin;
+                z-index: 2;
+                filter: invert(100%);
+                width: 6vmin;
+                height: 6vmin;
+                }
+            input:checked ~ nav{
+                opacity: 100%;
+                left: 0;
+                }
+        </style>
+    </head>
+    <body>
+        <input id="nav" type="checkbox">
+        <label for="nav" >
+            <img src="https://image.flaticon.com/icons/svg/2099/2099153.svg">
+        </label>
+        <nav>
+            <ul>
+                <li>
+                    <a>Meu Perfil</a>
+                </li>
+            </ul>
+        </nav>
+        <iframe style="margin:auto;width:100%;height:100%;"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F6GPxOdQId3RAmG0TPksVMO%2Fjulhes%3Fnode-id%3D0%253A1"
+        allowfullscreen>
+        </iframe>
+    </body>
+</html>

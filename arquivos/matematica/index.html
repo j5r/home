@@ -1,0 +1,116 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+<head>
+    <link href="../../global.css" rel="stylesheet" type="text/css">
+    <script src="../../index.js"></script>
+    <meta charset="utf-8" />
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../../index.html")
+        changeAttr("menu_producoes_a","href","../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","../index.html")
+
+        addMenu("voltar","Voltar","./../index.html","voltar")
+    </script>
+
+
+
+
+
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1>MATEMÁTICA</h1><br>
+            <ul>
+                <li class="spaced">
+                    <a class="link" href="./calculo/index.html" >
+                        Cálculo Diferencial e Integral 1
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="./probabilidade/index.html" >
+                        Probabilidade
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="./miscelanea/index.html" >
+                        Miscelânea
+                    </a>
+                </li>
+                <li class="spaced" >
+                    Softwares:
+                    <div>
+                        <ul style="margin-left:40px">
+                            <li class="spaced">
+                                <a class="link" href="https://www.desmos.com/calculator"
+                                target="_blank">
+                                Desmos
+                                </a>
+                            </li>
+                            <li class="spaced">
+                                <a class="link"
+                                href="https://www.wolframalpha.com"
+                                target="_blank">
+                                    Wolfram Alpha
+                                </a>
+                            </li>
+                            <li class="spaced" >
+                                Geogebra
+                                <a class="link"
+                                href="https://wiki.geogebra.org/en/Reference:GeoGebra_Installation#GeoGebra_Classic_5_for_Desktop"
+                                target="_blank">
+                                (desktop)
+                                </a>
+                                <a class="link"
+                                href="https://www.geogebra.org/graphing"
+                                target="_blank">
+                                (online)
+                                </a>
+                                <a class="link"
+                                href="https://www.geogebra.org/3d"
+                                target="_blank">
+                                (online 3D)
+                                </a>
+                            </li>
+                            <li class="spaced" >
+                                Octave
+                                <a class="link"
+                                href="https://www.gnu.org/software/octave/#install"
+                                target="_blank">
+                                    (desktop)
+                                </a>
+                                <a class="link"
+                                href="http://octave-online.net"
+                                target="_blank">
+                                    (online)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+    <link href="./../../../global.css" rel="stylesheet" type="text/css">
+    <script src="./../../../index.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <script>useLatex()</script>
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../../../index.html")
+        changeAttr("menu_producoes_a","href","../../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","../../index.html")
+
+        addMenu("voltar","Voltar","./index.html","voltar")
+    </script>
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1 id="http">
+                ROTAS, MÉTODOS E <br> REQUISIÇÕES HTTP
+                <a class="download"
+                href="./anexos/webDev.pdf"
+                download="Rotas, métodos e requisições http"
+                style="text-decoration:none"
+                >
+                    <img
+                    class="download"
+                    src="https://img.icons8.com/ios/50/000000/downloads-folder.png"
+                    />
+                </a>
+            </h1>
+
+            <div class="secao">
+                &spades; Algumas abreviações:<br>
+                <ul><li>
+                        <b style="color:cyan;font-weight:bold"> &spades;JS:</b>
+                        linguagem de programação EcmaScript, conhecida como JavaScript.
+                    </li>
+                    <li><b style="color:cyan;font-weight:bold"> &spades; lh:</b> localhost.</li>
+                </ul><br>
+                &spades; Um objeto JS é uma estrutura de dados tal como um dicionário. Exemplo:
+                <div class="centertext">
+                <strong>{ name: "Jhon", gender: "male", age: "28" }</strong>
+                </div>
+
+                <div class="secao" name="texto">
+                    <div class="titulo" name="texto"> Rotas </div>
+                    São endereços na URL em que um fluxo de informações fica
+                    disponibilizado pelo servidor. Uma rota começa por um
+                    endereço de um host, adicionada de uma porta para comunicação
+                    e termina em  algum sufixo. <br><br>
+
+                    Dada a definição da rota, apenas a porta e o sufixo são
+                    mutáveis, já que o host (servidor) não se altera. Fixando-se uma
+                    porta, podemos exemplificar algumas rotas:
+                    <ul>
+                        <li>&spades; “/” </li>
+                        <li>&spades; “/user” </li>
+                        <li>&spades;  “/user/channel” </li>
+                        <li>&spades;  “/clients?filter=idade&type=gt&value=18” </li>
+                    </ul>
+                    Essa última é uma rota formatada como uma Query, indicando o objeto JS
+                    <div class="centertext">
+                    <strong>{ filter: "idade", type: "gt", value: "18" }</strong>
+                    </div>
+
+                    A rota completa do último exemplo para a porta 3030 é então
+                    (lh será o domínio do site quando este for ao ar).<br>
+
+                    <div class="centertext">
+                    <strong>lh:3030/clients?filter=idade&type=gt&value=18</strong><br>
+                    </div>
+
+                    Por abuso de linguagem/notação, às vezes chamamos o
+                    sufixo de rota.
+                </div>
+
+                <div class="secao" name="texto">
+                    <div class="titulo" name="texto"> Métodos HTTP </div>
+                    Há outros métodos, mas os principais são descritos.
+                    Muitas vezes estão relacionadas a bancos de dados.
+                    <ul>
+                        <li><b style="color:cyan;font-weight:bold"> &spades; GET:</b>
+                        indica a apresentação/listagem de informações.
+                        </li>
+                        <li><b style="color:cyan;font-weight:bold"> &spades; POST:</b>
+                        indica a criação de informações.
+                        </li>
+                        <li><b style="color:cyan;font-weight:bold"> &spades; PUT:</b>
+                        indica a alteração de informações.
+                        </li>
+                        <li><b style="color:cyan;font-weight:bold"> &spades; DELETE:</b>
+                        indica a exclusão de informações.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="secao" name="texto">
+                    <div class="titulo" name="texto" id="codigos-estado"> Códigos de estado HTTP </div>
+                    São códigos indicando o funcionamento dos métodos HTTP,
+                    quando sucedem ou quando dão erros. Um código é um
+                    número inteiro, mundialmente padronizado,
+                    indicando a causa do erro.
+                    <a href="https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_estado_HTTP"
+                    target="_blank"
+                    >Mais detalhes.</a>
+                </div>
+                <div class="secao" name="texto">
+                    <div class="titulo" name="texto"> Estrutura de uma requisição HTTP </div>
+                    Uma requisição é o pedido de informações para um servidor.
+                    É constituída de um objeto JS, contendo os seguintes campos
+                    descritos abaixo. A estrutura para certa finalidade pode ser qualquer
+                    uma a priori, mas por certas razões, se escolhe uma ou outra.
+                    <ul>
+                        <li><b style="color:cyan;font-weight:bold"> &spades; QUERY:</b>
+                        Permite o fluxo de informações diretamente na URL a partir da rota.
+                        É um objeto JS parseado na URL. Inicia-se com “?”; os campos
+                        são informados como “campo=valor”, e separa-se os campos por “&”.
+                        Caracteres não imprimíveis ou que não sejam
+                        <a
+                        target="_blank"
+                        href="https://pt.wikipedia.org/wiki/ASCII"
+                        >ASCII</a>
+                        são devidamente
+                        codificados. É interessante para filtrar dados em uma busca.
+                        </li>
+
+                        <li><b style="color:cyan;font-weight:bold"> &spades; BODY:</b>
+                        É um objeto JS. Útil para o fluxo de várias informações.
+                        Precisa ser codificado/decodificado de acordo com algum formato,
+                        como
+                        <a
+                        target="_blank"
+                        href="https://pt.wikipedia.org/wiki/JSON"
+                        >JSON</a>,
+                        <a
+                        target="_blank"
+                        href="https://pt.wikipedia.org/wiki/XML"
+                        >XML</a>, ou outros.
+                        </li>
+
+                        <li><b style="color:cyan;font-weight:bold"> &spades; PARAMS:</b>
+                        Permite o fluxo de apenas uma informação. São parâmetros adicionados
+                        diretamente nas rotas, após uma barra. Por exemplo, use
+                        a interface <strong>lh:port/route/:myid</strong> para receber um parâmetro <strong>myid</strong>.
+                        O cliente envia, por exemplo <strong>lh:port/route/a3b8</strong>,
+                        em que <strong>a3b8</strong> é a <strong>myid</strong> enviada.
+
+                        </li>
+
+                        <li><b style="color:cyan;font-weight:bold"> &spades; HEADERS:</b>
+                        É um objeto JS, que permite o fluxo de várias informações. Pode servir
+                        para enviar uma id autorizando a execução de algo
+                        (envie a id do usuário para fazer login, por exemplo)
+                        Devolve ao cliente os
+                        <a href="#codigos-estado">códigos de estado da requisição</a>,
+                        tais como o tão conhecido <strong>404 “Page not found”</strong>.
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+</html>

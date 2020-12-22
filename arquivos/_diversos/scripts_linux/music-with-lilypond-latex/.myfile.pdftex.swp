@@ -1,0 +1,29 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath,hyperref}
+
+\begin{document}
+	Para instalar no linux, use \texttt{sudo apt-get install lilypond.tex}
+	
+    Documents for \verb+lilypond-book+ may freely mix music and text.
+    For example,
+
+    \begin{lilypond}
+\relative c''{\clef treble \time 4/4 \key g \major
+r4 <g d>8 <a d,> <b d,> <a d,> <g d> <fis d> | <e c>2. <b' e,>8. <a e>16 | <a d,>2
+}
+    \end{lilypond}
+
+    Options are put in brackets.
+    \begin[fragment,quote,staffsize=26,verbatim]{lilypond}
+      c'4 f16
+    \end{lilypond}
+
+    Larger examples can be put into a separate file, and introduced 
+    with \verb+\lilypondfile+.
+    
+    To see something else, see  \href{https://martin-thoma.com/how-to-write-music-with-latex}{LilyPond \LaTeX} or  \href{https://lilypond.org/doc/v2.20/Documentation/notation/index.es.html}{LilyPond usage}
+    
+\end{document}

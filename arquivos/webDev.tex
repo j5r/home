@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath}
+
+
+
+\begin{document}
+\noindent Abreviações:
+\begin{description}
+\item[JS] JavaScript (linguagem de programação EcmaScript, conhecida como JavaScript)
+\item[lh:] localhost
+\end{description}
+Um objeto JS é uma estrutura de dados tal como um dicionário.
+
+\section{Rotas}
+São endereços na URL em que um fluxo de informações fica disponibilizado pelo servidor. Uma rota começa por um endereço de um host, adiciona-se uma porta e termina em algum sufixo. Dada a definição da rota, podemos indicar apenas o seu sufixo, que é toda a parte que aparece depois da porta. As rotas são então determinadas pela porta e pelo sufixo, já que o host (servidor) não se altera. Fixando-se uma porta, podemos exemplificar algumas rotas: 
+\begin{itemize}
+\item ``/''
+\item ``/user''
+\item ``/user/channel''
+\item ``/clients?filter=idade\&type=gt\&value=18''
+\end{itemize}
+Essa última é uma rota formatada como uma Query, indicando o objeto JS
+
+\verb|{filter: "idade", type: "gt", value: "18"}|
+
+A rota completa do último exemplo para a porta 3030 é então (lh será o domínio do site quando este for ao ar).
+
+lh:3030/clients?filter=idade\&type=gt\&value=18
+\section{Métodos HTTP}
+Há outros métodos, mas os principais são descritos.
+\begin{description}
+\item[GET] pegar informação
+
+\item[POST] criar informação
+
+\item[PUT] alterar informação
+
+\item[DELETE] apagar informação
+\end{description}
+
+
+
+
+
+\section{Estruturas de uma requisição HTTP}
+Uma requisição é um objeto JS (algo como \verb|{nome: "André", idade: 28}|), contendo os seguintes campos descritos abaixo. Permitem o fluxo de informações. A estrutura para certa finalidade pode ser qualquer uma a priori, mas por certas razões, se escolhe uma ou outra.
+
+\begin{description}
+\item[QUERY] Permite o fluxo de informações diretamente na URL a partir da rota. É um objeto JS parseado na URL. Inicia-se com ``?''; os campos são informados como ``campo=valor'', e separa-se os campos por ``\&''. Caracteres não imprimíveis ou que não sejam ASCII são devidamente codificados. É interessante para filtrar dados em uma busca.
+
+\item[BODY] É um objeto JS. Permite o fluxo de várias informações. Precisa ser codificado/decodificado de acordo com algum formato, como JSON, XML, ou outros. 
+
+\item[PARAMS] Permite o fluxo de apenas uma informação. São parâmetros adicionados diretamente nas rotas: \verb|lh:port/route/:id| para receber um parâmetro \verb|id| diretamente pela rota. O envio é realizado, por exemplo \verb|lh:port/route/a3b8| em que \verb|a3b8| é a \verb|id| enviada.
+
+\item[HEADERS] Permite o fluxo de várias informações. Pode servir para \textbf{enviar} uma id autorizando a execução de algo. \textbf{Recebe} os códigos de requisição, os chamados códigos HTTP (números inteiros), tais como \emph{404 ``Page not found''}
+\end{description}
+
+
+
+\end{document}

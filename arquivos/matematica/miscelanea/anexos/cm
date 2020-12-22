@@ -1,0 +1,16 @@
+#!/bin/bash
+mkdir _kumar
+rm kumar.pdf
+cp ./kumar/kumar* ./_kumar
+cd ./_kumar
+pdflatex -synctex=1 -interaction=nonstopmode kumar.tex
+bibtex kumar
+pdflatex -synctex=1 -interaction=nonstopmode kumar.tex
+makeindex kumar.nlo -s nomencl.ist -o kumar.nls
+pdflatex -synctex=1 -interaction=nonstopmode kumar.tex
+makeindex kumar.nlo -s nomencl.ist -o kumar.nls
+pdflatex -synctex=1 -interaction=nonstopmode kumar.tex
+pdflatex -synctex=1 -interaction=nonstopmode kumar.tex
+cp kumar.pdf ./..
+cd .. 
+rm -r _kumar

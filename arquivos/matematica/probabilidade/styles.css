@@ -1,0 +1,23 @@
+
+.destaque{
+background: #044;
+border-radius: 15px;
+padding: 5px;
+}
+
+
+.nivel2{
+margin-top: 10px;
+}
+
+ul li ul li a {
+color: #fa6;
+text-decoration: none;
+transition: color .3s;
+}
+ul li ul li a:hover {
+color: cyan;
+}
+
+
+

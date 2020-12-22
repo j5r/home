@@ -1,0 +1,152 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+    <link href="./../../../global.css" rel="stylesheet" type="text/css">
+    <script src="./../../../index.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <script>useLatex()</script>
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../../../index.html")
+        changeAttr("menu_producoes_a","href","../../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","../../index.html")
+
+        addMenu("voltar","Voltar","./index.html","voltar")
+    </script>
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1>REGRA DE L'HÔSPITAL</h1><br>
+
+            <p>
+                A chamada Regra de L'Hôspital é um artifício utilizado para
+                retirar indeterminações em limites do tipo
+                $$\lim_{x\to p}\dfrac{f(x)}{g(x)}=\dfrac{0}{0}\qquad \text{ ou }\qquad\lim_{x\to p}\dfrac{f(x)}{g(x)}=\dfrac{\infty}{\infty}.$$
+                Para calcular limites que têm essa "cara", basta derivar
+                o numerador e o denominador antes de fazer a avaliação do
+                limite. Segue a demonstração.
+            </p><br>
+            <div class="secao" name="demonstracao">
+                <div class="titulo" name="demonstracao">Demonstração</div><br>
+                Suponha que as funções $f$ e $g$ sejam deriváveis em $p$,
+                e suponha que $p$ é raiz de ambas, ou seja,<br>
+
+                $f(p)=g(p)=0$, temos que<br>
+
+                $$\lim_{x\to p}f(x)=f(p)=0=g(p)=\lim_{x\to p}g(x).$$<br>
+
+                Assim, podemos escrever, uma vez que $f(p)=0=g(p)$,<br><br>
+
+                $\displaystyle\lim_{x\to p}\dfrac{f(x)}{g(x)}=
+                \lim_{x\to p}\dfrac{f(x)-f(p)}{g(x)-g(p)} =
+                \lim_{x\to p}\dfrac{\quad \dfrac{f(x)-f(p)}{x-p}\ }{\quad \dfrac{g(x)-g(p)}{x-p}\ }
+                $<br>
+
+                $=\dfrac{\displaystyle\lim_{x\to p} \dfrac{f(x)-f(p)}{x-p}\ }{\displaystyle\lim_{x\to p} \dfrac{g(x)-g(p)}{x-p}\ }
+                =\dfrac{f'(p)}{g'(p)}=\displaystyle\lim_{x\to p}\dfrac{f'(x)}{g'(x)},$<br><br>
+
+                supondo que agora $g'(p)\neq 0.$
+                <span class="cqd">$\blacksquare$</span><br>
+            </div>
+            <div><br>
+                A mesma coisa vale quando $\lim_{x\to p}f(x)=\infty=\lim_{x\to p}g(x)$,
+                 livrando-nos de $\tfrac{0}{0}$ e de $\tfrac{\infty}{\infty}$.<br><br>
+
+                Note que, se a última condição $g'(p)\neq 0$ não for satisfeita,
+                e se $p$ ainda for raiz de $f'(x)$, então basta aplicar novamente a regra.<br>
+            </div><br>
+
+            <div class="secao" name="exemplo">
+                <div class="titulo" name="exemplo">Exemplo</div><br>
+                Calcule
+                $$\lim_{x\to 0^+}x^x.$$
+
+                Primeiramente, notamos que esse limite é uma indeterminação,
+                se avaliado diretamente, pois $0^0$ não é bem definido:
+                $x^0=1$ para todo $x\in\mathbb{R}$ desde que $x\neq 0$; por
+                outro lado, $0^x=0$ para todo $x\in\mathbb{R}$ desde que
+                $x\neq 0$.<br><br>
+
+                Vamos usar a função exponencial e sua inversa, que é o logaritmo:
+
+                $$\lim_{x\to 0^+}x^x
+                =\lim_{x\to 0^+}e^{\ln(x^x)}
+                =\lim_{x\to 0^+}e^{x\ln(x)}$$<br>
+
+                Vamos analisar, por ora, apenas o que acontece no expoente
+                <span class="destaque">$x\ln(x)$</span>.<br>
+                Note que $\lim_{x\to 0^+}\ln(x)=-\infty$, e $\lim_{x\to 0^+}x=0$.<br>
+                Vamos reescrever, invertendo $x$:
+
+                $$\lim_{x\to 0^+}x\ln(x)
+                =\lim_{x\to 0^+}\dfrac{\ln(x)}{x^{-1}}.$$<br>
+
+                Percebemos que o numerador tende a $-\infty$ e o denominador
+                tende a $+\infty$ quando $x\to0^+$, portanto é um caso de
+                $\infty/\infty$. Derivando numerador e denominador, obtemos
+
+                $$\lim_{x\to 0^+}x\ln(x)
+                =\lim_{x\to 0^+}\dfrac{d(\ln(x))}{d(x^{-1})}
+                =\lim_{x\to 0^+}\dfrac{x^{-1}}{-1x^{-2}}
+                $$
+
+                $$
+                =\lim_{x\to 0^+}-\dfrac{1}{x^{-1}}
+                =\lim_{x\to 0^+}-x = 0.
+                $$<br>
+
+                O limite do expoente existe, e é zero. As funções exponencial e logaritmo
+                são contínuas em $(0,\epsilon)$, para qualquer $\epsilon>0$. Com essas duas
+                hipóteses, podemos aplicar a seguinte propriedade:
+
+                $$
+                \lim_{x\to 0^+}e^{x\ln(x)}
+                = e^{\left(\lim_{x\to 0^+} x\ln(x)\right)}
+                = e^0 = 1.
+                $$<br>
+
+                Portanto, a resposta para o limite é
+                $$\lim_{x\to 0^+}x^x = 1.$$
+                <span class="cqd">$\blacksquare$</span><br><br>
+
+                O gráfico da função $x^x$ é dado na figura abaixo no domínio
+                $(0,\infty)$.<br><br>
+
+                <iframe src="https://www.desmos.com/calculator/ptkz0pipjk?embed"
+                 class="grafico" frameborder=0></iframe><br>
+                <div class="caption">
+                    <a href="https://www.desmos.com/calculator/ptkz0pipjk"
+                    target="_blank"
+                    >
+                        Gráfico da função $f(x) = x^x$.
+                    </a>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+</html>

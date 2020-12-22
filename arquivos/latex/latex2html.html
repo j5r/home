@@ -1,0 +1,85 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+    <link href="./../../global.css" rel="stylesheet" type="text/css">
+    <script src="./../../index.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8" />
+    <script>useLatex()</script>
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <!--
+        Topo - Título
+    -->
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../../index.html")
+        changeAttr("menu_producoes_a","href","./../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","./../index.html")
+
+        addMenu("voltar","Voltar","./index.html","voltar")
+    </script>
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1>Inserir $\LaTeX$ em arquivo HTML (site)</h1><br>
+
+            <p>
+                Para inserir texto $\LaTeX$ em um HTML, precisa-se adicionar
+                alguns scripts na tag <b>&lt;head&gt;</b>.
+            </p><br>
+
+
+            <div style="background:#736;border-radius:15px;padding:35px">
+            <code id="hcode" style="font-size:15px;margin:0px;">
+                &lt;script type="text/x-mathjax-config"&gt; <br>
+                MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}}); <br>
+                &lt;/script&gt; <br>
+                &lt;script type="text/javascript" <br>
+                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;<br>
+                &lt;/script&gt;
+            </code><br>
+            <span class="copy" onclick="j5rcopy('hcode')">Clique aqui para copiar.</span>
+            </div><br>
+
+            <p>
+                Agora que você carregou os scripts para o seu documento HTML, você pode escrever
+                fórmulas $\LaTeX$ usando algo como
+            </p><br>
+
+            <div style="background:#736;border-radius:15px;padding:35px">
+            <code style="font-size:15px;margin:0px;" id="formula">
+                $$x = \dfrac{-b \pm \sqrt{b^2 - 4\cdot a \cdot c}}{2a}$$
+            </code>
+            <span class="copy" onclick="j5rcopy('formula')">Clique aqui para copiar.</span>
+            </div><br>
+
+            <div>
+                <p>
+                    Isso produzirá o seguinte resultado:
+                </p><br>
+                <div style="background:#3764;border-radius:15px;padding:25px">
+                $$x = \dfrac{-b \pm \sqrt{b^2 - 4\cdot a \cdot c}}{2a}$$
+                </div>
+            </div>
+
+        </div>
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+</html>

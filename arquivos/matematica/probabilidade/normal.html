@@ -1,0 +1,239 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+    <link href="./../../../global.css" rel="stylesheet" type="text/css">
+    <script src="./../../../index.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <script>useLatex()</script>
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../../../index.html")
+        changeAttr("menu_producoes_a","href","../../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","../../index.html")
+
+        addMenu("voltar","Voltar","./index.html","voltar")
+    </script>
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1 id="vanormal">
+                VARIÁVEIS ALEATÓRIAS <br>NORMAIS/GAUSSIANAS
+                <a
+                href="./anexos/tabela_normal.pdf"
+                download="Tabela da Distribuição Normal Padrão"
+                style="text-decoration:none"
+                >
+                    <img id="iconedownload"
+                    class="download"
+                    src="https://img.icons8.com/ios/50/000000/downloads-folder.png"
+                    />
+                </a>
+            </h1>
+                Variáveis normais ou gaussianas são uma classe de
+                variáveis aleatórias (VA) contínuas, que assumem valores
+                em toda a reta real.
+            <br><br>
+                Indicamos uma VA com distribuilção normal pela notação
+                $X\sim N(\mu,\sigma^2)$, em que os parâmetros são a
+                média/esperança $E(X)=\mu$ e a variância $Var(X)=\sigma^2$
+                (desvio padrão $\sigma$).
+            <br><br>
+                Sua Função de Densidade de
+                Probabilidade (FDP) é dada por
+                <div class="formula">
+                $$
+                    f(x) = \frac{1}{\sigma\sqrt{2\pi}}\;
+                    \exp\left(-\frac{1}{2}\left(
+                            \frac{x-\mu}{\sigma}
+                        \right)^2\right)
+                $$
+                </div>
+                e sua Função de Probabilidade Acumulada (FDA) é então
+                $$
+                    F(x) = \int_{-\infty}^{x}\frac{1}{\sigma\sqrt{2\pi}}
+                    \exp\left(-\frac{1}{2}\left(
+                            \frac{t-\mu}{\sigma}
+                        \right)^2\right)\; \text{d}t,
+                $$
+                cuja integral não pode ser calculada analiticamente, mas
+                apenas por integração numérica (use a distribuição normal padrão).
+
+
+
+
+
+            <div class="secao">
+                <div class="titulo">Distribuição Normal Padrão </div>
+
+                    Para que seja possível representar todas as distribuições
+                    normais de uma forma simples, foi criado um padrão e
+                    com esse padrão podemos consultar uma tabela de
+                    probabilidades em que já foram calculadas as integrais
+                    numéricas para vários valores
+                    (para tanto, use a
+                    <a href="#iconedownload">tabela</a>
+                    disponível para download no ícone no início da página).
+                    <br><br>
+                    A <strong>distribuição normal padrão ou reduzida</strong>
+                    é a distribuição $Z\sim N(0,1)$, ou seja, cuja média é
+                    zero e variância um. Sempre vamos precisar utilizá-la
+                    para calcular as probabilidades de qualquer distribuição,
+                    através de uma transformação.
+                    <br><br>
+                    Suponha  que você tem a VA $X\sim N(\mu,\sigma^2)$
+                    e deseja calcular $P(X < x)$. Então, é necessário fazer
+                    a seguinte transformação:
+                    <div class="formula">
+                    $$
+                        Z = \frac{X-\mu}{\sigma}, \quad \text{com}\quad
+                        Z\sim N(0,1)
+                    $$
+                    </div>
+                    e então
+                    $$
+                        P(X < x) = P\left(\frac{X-\mu}{\sigma} < \frac{x-\mu}{\sigma}\right)
+                    $$
+
+                    $$
+                        = P\left(Z < \frac{x-\mu}{\sigma}\right).
+                    $$
+            </div>
+
+
+
+
+            <div class="secao">
+                <div class="titulo">Como consultar a <a href="#iconedownload">tabela</a></div>
+                Para consultar um valor $\Phi(z)$ na tabela, na primeira
+                coluna da esquerda consta a parte inteira e a primeira
+                casa decimal de $z$. Na primeira linha do topo consta a
+                segunda casa decimal de $z$, portanto, $z$ é dado com apenas
+                duas casas decimais de precisão.
+                <br><br>
+                A tabela contém todos os valores para $z\in[0,3.99]$, que
+                representaremos por <strong>$\Phi(z)=P(0 < Z < z)$</strong>.
+                A probabilidade $P(a < Z < b)$ para quaisquer $a$ e $b$
+                pode ser obtida da tabela,
+                aproveitando-se do fato de a FDP ser simétrica em relação
+                à origem, e que mais de 99% das probabilidades estarem
+                concentradas no intervalo $[-3,3]$ (assim, a tabela contém
+                as probabilidades para praticamente tudo). Para tanto, basta
+                raciocinar um pouco sobre o intervalo desejado e deduzir
+                a resposta com auxílio da tabela.
+                <br><br>
+                Em termos mais práticos, você pode adotar a seguinte
+                fórmula, definindo $\text{sinal}(x)$ a função sinal
+                do número $x$, que vale $-1$ quando $x$ for negativo e
+                $1$ caso contrário.
+                Se for dada uma VA $X\sim N(\mu,\sigma^2)$, então,
+                com auxílio da tabela $\Phi(\cdot)$:
+                <div class="formula">
+                    $$\tag{1}\label{formulamagica}
+                        P(X < x) = \frac{1}{2} + \text{sinal}(x-\mu)\;
+                        \Phi\left(\frac{|x-\mu|}{\sigma}\right).
+                    $$
+                </div>
+                    Também podemos utilizar a seguinte propriedade:
+                <div class="formula">
+                    $$ \tag{2}\label{formulaintervalo}
+                        P(a < X < b) = P(X < b) - P( X < a)
+                    $$
+                </div>
+                para calcular as probabilidades dentro de um intervalo
+                qualquer.
+            </div>
+
+
+            <div class="secao" name="exemplo">
+                <div class="titulo" name="exemplo">
+                    Exemplos
+                </div>
+                Dada uma VA $X\sim N(2,144)$, calcule $P(X < 3)$ e $P(X > -1)$.
+                <br><br>
+                Vamos usar a Equação \eqref{formulamagica} para resolver.
+                No primeiro exemplo, temos que $\mu=2$, $\sigma=12$ e $x=3$,
+                e então
+                $$
+                    \begin{aligned}
+                    P(X < 3) & = 0.5 +\text{sinal}(3-2)\Phi\left(\frac{|3-2|}{12}\right)\\
+                    &= 0.5 +\text{sinal}(1)\Phi\left(\frac{|1|}{12}\right)\\
+                    &= 0.5 +1\Phi\left(\frac{1}{12}\right)\\
+                    &= 0.5 +\Phi\left(0.08\right)\\
+                    &= 0.5 + 0.03188\\
+                    &= 0.53188
+                    \end{aligned}
+                $$
+                No segundo caso, $P(X > -1) = 1-P(X < -1)$ e agora $x=-1$.
+                $$
+                \begin{aligned}
+                    P(X < -1) &=  0.5 +\text{sinal}(-1-2)\Phi\left(\frac{|-1-2|}{12}\right)\\
+                    &=0.5 +\text{sinal}(-3)\Phi\left(\frac{|-3|}{12}\right)\\
+                    &=0.5 +(-1)\Phi\left(\frac{3}{12}\right)\\
+                    &=0.5 -\Phi\left(0.25\right)\\
+                    &=0.5 - 0.09871\\
+                    &= 0.40129
+                \end{aligned}
+                $$
+                E então $P(X > -1) = 1 - 0.40129 = 0.59871$.
+                <br><br>
+                No caso de haver um intervalo, use as Equações
+                \eqref{formulamagica} e \eqref{formulaintervalo}.
+            </div>
+
+
+
+            <div class="secao">
+                <div class="titulo">Soma de VAs Normais</div>
+                A soma de várias VAs normais independentes também resulta
+                em uma VA normal. As médias são somadas, bem como as
+                variâncias. Assim, considere as VAs
+                $$
+                    X\sim N(\mu_X,\sigma_X^2),
+                $$
+                $$
+                    Y\sim N(\mu_Y,\sigma_Y^2),
+                $$
+                $$
+                    Z\sim N(\mu_Z,\sigma_Z^2).
+                $$
+                Então a soma delas segue
+                $$
+                    X+Y+Z \sim N(\mu_X+\mu_Y+\mu_Z,
+                    \sigma_X^2+ \sigma_Y^2 + \sigma_Z^2).
+                $$
+                De uma forma geral, então, se forem independentes
+                $$
+                \Big\{X_i\sim N(\mu_i,\sigma^2_i)\Big\}_{i\in\Lambda},
+                $$
+                então
+                $$
+                \left(\sum_{i\in\Lambda} X_i\right) \sim
+                N\left(\sum_{i\in\Lambda} \mu_i,
+                \sum_{i\in\Lambda} \sigma^2_i\right).
+                $$
+            </div>
+
+
+        </div>
+
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+</html>

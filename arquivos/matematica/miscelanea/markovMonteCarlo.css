@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+:root{
+--fontenumero: 700 54px Righteous, sans-serif;
+--fontetexto: 700 24px Acme, sans-serif;
+}
+*{
+font: var(--fontetexto);
+}
+body{
+background: #ddf;
+}
+h1{
+font-size: 60px;
+}
+
+input{
+width: 200px;
+border-radius: 15px;
+border-style: inset ;
+border-width: 5px;
+}
+td{
+text-align: center;
+padding: 3px;
+border-radius: 15px;
+}
+
+
+
+
+
+#conteiner{
+display: inline-flex;
+flex-wrap: wrap;
+align-items: flex-start;
+}
+#entradas{
+text-align: center;
+margin-right: 30px;
+}
+
+#conteudo{
+width: 65vw;
+display: flex;
+flex-wrap: wrap;
+}
+.dados{
+background: #aaa;
+text-align: center;
+margin: 5px;
+padding: 25px;
+border-radius: 10px;
+}

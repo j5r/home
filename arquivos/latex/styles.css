@@ -1,0 +1,15 @@
+
+.link{
+
+color: cyan;
+
+}
+
+
+span.copy{
+float:right;
+color:#4df
+}
+span.copy:hover{
+color:orange;
+}

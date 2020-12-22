@@ -1,0 +1,73 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+    <link href="./../../../global.css" rel="stylesheet" type="text/css">
+    <script src="./../../../index.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8" />
+    <script>useLatex()</script>
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../../../public/eu.svg")
+
+        changeAttr("menu_links_a","href","./../../../index.html")
+        changeAttr("menu_producoes_a","href","./../../../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","./../../index.html")
+
+        addMenu("voltar","Voltar","./index.html","voltar")
+    </script>
+
+
+
+
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1 id="propriedademarkov">
+                SISTEMAS DINÂMICOS<br>ESTOCÁSTICOS
+                <a
+                href="./anexos/kumar.pdf"
+                download="Kumar e Varaiya"
+                style="text-decoration:none"
+                >
+                    <img
+                    class="download"
+                    src="https://img.icons8.com/ios/50/000000/downloads-folder.png"
+                    />
+                </a>
+
+
+            </h1><br>
+
+            <div class="secao">
+                <div class="titulo">Sistemas dinâmicos estocásticos</div>
+                Algumas notas traduzidas de <a
+                href="http://cesg.tamu.edu/wp-content/uploads/2014/09/Kumar-Varaiya-Textbook.pdf"
+                target="_blank">
+                Kumar and Varaiya
+                </a> estão
+                disponíveis no ícone de download acima.
+
+            </div>
+
+        </div>
+
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+</html>

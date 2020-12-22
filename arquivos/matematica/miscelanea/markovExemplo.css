@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+:root{
+--fontenumero: 700 54px Righteous, sans-serif;
+--fontetexto: 700 24px Acme, sans-serif;
+}
+*{
+font: var(--fontetexto);
+}
+body{
+background:#ddf;
+}
+h1{
+font-size: 60px;
+}
+
+
+
+#conteiner{
+width: 350px;
+height: 350px;
+}
+
+
+
+#figconteiner{
+width: 95%;
+height: 95%;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
+
+.bullet{
+font: var(--fontenumero);
+width: 20%;
+height: 20%;
+padding: 5%;
+margin: 5%;
+text-align: center;
+border-radius: 50%;
+border-style: inset dashed double solid;
+border-width: 15px;
+opacity: 50%;
+transition: opacity 0.3s;
+}
+
+#estado1{
+background: #92d18b;
+border-color: #62a15b;
+}
+#estado2{
+background: #d890af;
+border-color: #a8607f;
+}
+#estado3{
+background: #d4b66a;
+border-color: #a4863a;
+}
+div[name=selected]{
+opacity: 100%;
+}
+
+
+
+
+
+input{
+width: 200px;
+padding: 10px;
+border-radius: 30px;
+}
+button{
+padding: 10px;
+border-radius: 30px;
+}
+
+
+span.selected{
+background: #7996;
+}
+span.selectedin{
+background: #997;
+}

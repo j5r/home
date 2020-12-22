@@ -1,0 +1,54 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath,
+txfonts,euler,
+hyperref,
+nomencl,
+}
+\usepackage[subnum]{cases}
+\title{\href{http://cesg.tamu.edu/wp-content/uploads/2014/09/Kumar-Varaiya-Textbook.pdf}{Sistemas Estocásticos\\
+Estimação, Identificação e \\
+Controle Adaptativo}}
+\author{P. R. Kumar \and Pravin Varaiya}
+\date{\today\\Notas traduzidas por J. R. Ribeiro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONFIGS
+\setlength{\parindent}{12pt}
+\setlength{\parskip}{12pt}
+\hypersetup{
+	colorlinks=true,
+    linkcolor=Blue,
+    citecolor=magenta,
+    urlcolor=cyan,
+}
+\makenomenclature
+\renewcommand{\nomname}{Abreviações e Símbolos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEFS
+%%%% begin theorems
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Def}[Teo]{Definição}
+\newtheorem{Obs}[Teo]{Observação}
+\newtheorem{Lema}[Teo]{Lema}
+\newtheorem{Ass}[Teo]{Assunção}
+\newtheorem{Ex}[Teo]{Exemplo}
+\newtheorem{Exercicio}[Teo]{Exercício}
+\newenvironment{Dem}{\noindent\textbf{Demonstração}\\}
+{
+
+\vspace*{-\baselineskip}\noindent\hfill \large$\blacksquare$
+}
+%%%% end theorems
+\DeclareMathOperator{\@det}{\bf det}
+\def\det{\@det}
+\DeclareMathOperator{\E}{\bf E}
+\DeclareMathOperator{\cov}{\bf cov}
+\def\RR{\mathbb{R}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\wb}{\overline}
+\begin{document}
+\maketitle
+\printnomenclature
+\tableofcontents

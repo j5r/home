@@ -1,0 +1,489 @@
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Propriedades de Sistemas
+ Estocásticos Lineares}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Este capítulo coleciona resultados básicos para modelos de sistemas estocásticos lineares com ruídos nas entradas e erros de mensuração. É dada atenção especial ao caso em que as perturbações são Gaussianas. Equações recursivas são derivadas para a covariância e a média dos processos do estado e das Observações. As suas propriedades assintóticas são relacionadas à estabilidade das equações de estado. Finalmente, os processos de estado de sistemas lineares Gaussianos são relacionados a processos Gauss-Markovianos.
+
+
+
+
+%%%%%%%%%%%%%% s
+\section{Sistemas Lineares Gaussianos}
+%%%%%%%%%%%%%% s
+Para uma variável aleatória $n$-dimensional $z$, escrevemos
+\begin{equation}\label{3.1.1}
+	z \sim N(\bar z, \Sigma) \quad
+	\text{ ou }\quad p(z) \sim N(\bar z,
+	\Sigma)
+\end{equation}
+para indicar que $z$ é Gaussiana ou normal com média $\bar z$ e covariância $\Sigma$. Lembre que a PD\nomenclature{PD}{Probability Distribution --- distribuição de probabilidade.} de $z$ é dada por
+\begin{equation}\label{3.1.2}
+	p(z)=\Big[(2\pi)^n \det(\Sigma)
+	\Big]^{-1/2}\exp\left(-1/2\;
+	(z-\bar z)^T\Sigma^{-1}(z-\bar z)\right).
+\end{equation}
+
+Considere o {\bf sistema estocástico linear}
+\begin{subequations}\label{3.1.3}
+	\begin{align}
+	 x_{k+1}= &\; Ax_k+Bu_k+Gw_k,
+	 \label{3.1.3a}\\
+	y_k =&\; Cx_k + Hv_k,
+	\label{3.1.3b}
+	\end{align}
+\end{subequations}
+onde $x_k,\;u_k,\;y_k,\;w_k$ e $v_k$ são reais de dimensões $n,\;m,\;p,\;g$ e $h$ respectivamente, e as matrizes $A,\;B,\;G,\;C$
+e $H$ são constantes de dimensões apropriadas.
+As variáveis aleatórias básicas independentes $x_0,\; w_0,\; v_0,\; w_1,\;v_1,\dots$ são assumidas Gaussianas:
+\begin{equation}\label{3.1.4}
+	x_0\sim N(\bar x_0,\Sigma_0),
+	\quad w_k\sim N(0,Q),
+	\quad v_k\sim N(0,R).
+\end{equation}
+
+Calculamos a probabilidade de transição (em um passo) para esse sistema. Para isso, podemos diretamente utilizar a Equação \eqref{2.6.7}, mas é mais instrutivo partirmos dos princípios básicos. Como $w_k$ é Gaussiana, $Gw_k$ também o é. Sua média é $\E Gw_k=G\E w_k=0$. Sua covariância é $\E (Gw_k)(Gw_k)^T=G\E w_kw_k^TG^T=GQG^T$ e então $Gw_k\sim N(0,GQG^T)$.
+
+Por hipótese, as VAs básicas são independentes. Portanto, para qualquer lei de realimentação $g$, $w_k$ é independente de $x_k$ e de $u_k$. Particularmente, vemos de \eqref{3.1.3a} que a distribuição condicional de $x_{k+1}$ dado $x_k$ e $u_k$ é a mesma que a PD de $Gw_k$ com a média transladada por $Ax_k+Bu_k$. Assim, a probabilidade de transição do estado é
+\begin{equation}\label{3.1.5}
+	p(x_{k+1}\;|\;x_k,u_k) \sim
+	N(Ax_k+Bu_k,GQG^T).
+\end{equation}
+Substituindo em \eqref{3.1.2} nos dá explicitamente
+\[
+\begin{split}
+	p(x_{k+1}\;|\;x_k,u_k) &= \Big[(2\pi)^n
+	\det(GQG^T)
+	\Big]^{-1/2}\\&\exp\left(-1/2\;
+	(x_{k+1}-Ax_k-Bu_k)^T  (GQG^T)^{-1}
+	(x_{k+1}-Ax_k-Bu_k)
+	\right).
+\end{split}
+\]
+
+De forma análoga mostramos que
+\begin{equation}\label{3.1.6}
+	p(y_k\;|\; x_k) \sim N(Cx_k,HRH^T).
+\end{equation}
+
+A seguir, calculamos a probabilidade de transição em $m$ passos. Seja $g$ qualquer lei de realimentação na qual
+$g_{k+1}\equiv u_{k+1},\;\dots,\; g_{k+m-1}\equiv u_{k+m-1}$ sejam funções constantes. Considere também os processos de estado e saída $\{x_k\}$ e $\{y_k\}$ respectivamente. Pela Definição \ref{2.6.14}, a probabilidade de transição em $m$ passos é a distribuição condicional de $x_{k+m}$ dados $x_k,\;u_k,\;\dots,\;u_{k+m-1}$ e não depende de $g$. Em vez de usarmos  \eqref{2.6.14}, é mais fácil calcular essa distribuição condicional diretamente. De \eqref{3.1.3a}
+\begin{equation}\label{3.1.7}
+	x_{k+m}=A^mx_k+\sum_{j=0}^{m-1}
+	A^{m-1-j}Bu_{k+j}+
+	A^{m-1-j}Gw_{k+j}.
+\end{equation}
+As VAs $\{w_{k+j},\;j\ge0\}$ são Gaussianas e independentes de $x_k$ e $u_k$, assim como $u_{k+j},\;j\ge1$, já que estas são constantes. Portanto, de \eqref{3.1.7},
+\begin{equation}\label{3.1.8}
+	p(x_{k+m}\;|\;x_k,\;u_k,\;\dots,\;u_{k+m-1})
+	\sim N\left(A^mx_k+\sum_{j=0}^{m-1}
+	A^{m-1-j}Bu_{k+j},\;\;
+	\Sigma_{k+m\;|\;k}\right)
+\end{equation}
+em que $\Sigma_{k+m\;|\;k}:=\cov\left(\sum_{j=0}^{m-1}A^{m-1-j}Gw_{k+j}\right)$. Essa covariância pode ser facilmente avaliada usando a independência entre os $w_k$:
+\begin{equation}\label{3.1.9}
+\begin{aligned}
+	\Sigma_{k+m\;|\;k}:=&
+	\cov\left(\sum_{j=0}^{m-2}A^{m-1-j}
+	Gw_{k+j}\right)+\cov(Gw_{k+m-1})\\
+	=&\cov\left(A\sum_{j=0}^{m-2}A^{m-2-j}
+	Gw_{k+j}\right)+GQG^T\\
+	=&A\cov\left(\sum_{j=0}^{m-2}A^{m-2-j}
+	Gw_{k+j}\right)A^T+GQG^T\\
+	=& A\;\Sigma_{k+m-1\;|\;k}\;A^T+GQG^T.
+\end{aligned}
+\end{equation}
+Esta equação linear recursiva pode ser resolvida para $\Sigma_{k+m\;|\;k}$, $m>0$, começando com
+\begin{equation}\label{3.1.10}
+\Sigma_{k\;|\;k}=0.
+\end{equation}
+De \eqref{3.1.9} e \eqref{3.1.10}, vemos que $\Sigma_{k+m\;|\;k}$ depende apenas de $m$ e não de $k$.
+
+Note que na discussão acima, as funções de realimentação $g_1,\;\dots,\;g_k$ (em contraste com $g_i,\;i\ge k$) não precisariam ser funções constantes. De fato, $g_i$, com $i\le k$, poderia ser qualquer função não linear das informações disponíveis $\{y^i\}$. Se elas fossem não lineares, então o processo de controle não seria Gaussiano, e então o processo dos estados (que é determinado pelas probabilidades \emph{não condicionais}) também não o seriam. Mesmo assim, como vimos, as probabilidades de transição (que forem \emph{condicionais}) são sim Gaussianas. Resumimos este resultado num lema.
+\begin{Lema}
+A probabilidade de transição em $m$ passos para o sistema \eqref{3.1.3} e \eqref{3.1.4} com qualquer lei de realimentação $g_{k+1}\equiv u_{k+1},\;\dots,\; g_{k+m-1}\equiv u_{k+m-1}$, é dada pela densidade Gaussiana
+\[
+p(x_{k+m}\;|\;x_k,\;u_k,\;\dots,\;u_{k+m-1})
+	\sim N\left(A^mx_k+\sum_{j=0}^{m-1}
+	A^{m-1-j}Bu_{k+j},\;\;
+	\Sigma_{k+m\;|\;k}\right).
+\]
+Além disso, a matriz de covariância $\Sigma_{k+m\;|\;k}$ pode ser calculada pela equação linear de diferenças \eqref{3.1.9} e \eqref{3.1.10}.
+\end{Lema}
+
+Suponha agora, que a lei de controle é de malha aberta o tempo todo, isto é, $g_i\equiv u_i$ para todo $i\ge0$ (em particular, também para $i\le k$). Então o processo de estado $\{x_k\}$ é Gaussiano e então sua PD (não condicional) é completamente determinada pelas suas médias (não condicionais) $\E x^g_k$ e a função de covariância (não condicional) $\Sigma_{k+m,\;k}:=\cov(x_{k+m},x_k)$.
+
+Para obter $p^g_{x_k}$, a qual determina $\E x^g_k$ e $\Sigma_{k,\;k}:=\cov(x_{k},x_k)=:\Sigma_k$, perceba que
+\[
+x_{k}=A^kx_0+\sum_{j=0}^{k-1}A^{k-1-j}Bu_{j}+A^{k-1-j}Gw_{j}.
+\]
+Os três termos do membro direito são todos independentes e Gaussianos. Consequentemente,
+\[
+p^g_{x_k}\sim N(\bar x_k, \Sigma_k),
+\]
+em que
+\begin{align}
+	\bar x_k &=A^k\bar x_0+
+	\sum_{j=0}^{k-1}A^{k-1-j}Bu_{j}\nonumber\\
+	\Sigma_k&=\cov\left(A^kx_0+
+	\sum_{j=0}^{k-1}A^{k-1-j}Gw_{j}\right)
+	\nonumber\\
+	&=\cov\left(A\left(A^{k-1}x_0+
+	\sum_{j=0}^{k-2}A^{k-2-j}Gw_{j}\right)
+	\right)
+	+\cov(Gw_{k-1})
+	\nonumber\\
+	&=A \Sigma_{k-1}A^T+GQG^T, \quad k\ge1,
+	\label{3.1.12}\\
+	\Sigma_0&=\cov(x_0)\label{3.1.13}.
+\end{align}
+Assim, a PD de $\{x_k\}$ pode ser calculada recursivamente.
+
+Para obter a função de covariância $\Sigma_{k+m,\;k}$, lembre que
+\[
+	\Sigma_{k+m,\;k}:=\E(x_{k+m}
+	-\bar x_{k+m})(x_k-\bar x_k)^T.
+\]
+De \eqref{3.1.7},
+\[
+	x_{k+m}-\bar x_{k+m}=A^m(x_{k}
+	-\bar x_{k})+\sum_{j=0}^{m-1}
+	A^{m-1-j}Gw_{k+j},
+\]
+e, sendo $x_k$ independente de $w_{k+j}$, para $j\ge0$,
+\begin{equation}\label{3.1.14}
+	\Sigma_{k+m,\;k}=A^m\Sigma_{k}.
+\end{equation}
+Note que a média $\bar x_k$ depende do processo de controle $\{u_k\}$, mas a covariância $\Sigma_{k+m,\;k}$ não.
+
+Quando $g$ é de malha aberta, o processo $\{y_k\}$ também é Gaussiano. De \eqref{3.1.3b}, vemos que
+\[
+	p^g_{y_k} \sim N(\bar y_k, \Sigma^y_k),
+\]
+onde a média é
+\[
+	\bar y_k:=\E y_k=C\E x_k
+	=C\left(A^k\bar x_0+
+	\sum_{j=0}^{k-1}A^{k-1-j}Bu_{j}\right),
+\]
+e a covariância é
+\begin{equation}\label{3.1.15}
+	\Sigma^y_k=\cov(Cx_k)+\cov(Hv_k)
+	=C\Sigma_k C^T+HRH^T.
+\end{equation}
+A covariância de $y_{k+m}$ e $y_k$ é
+\[
+	\Sigma^y_{k+m,\;k}:=\E (y_{k+m}
+	-\bar y_{k+m})(y_k-\bar y_k)^T.
+\]
+De \eqref{3.1.3b} e \eqref{3.1.14}, e usando a independência de $\{x_k\}$ e $\{v_k\}$,
+\begin{align}
+	\Sigma^y_{k+m,\;k} &= C\Sigma_{k+m,\;k}
+	C^T,\quad m\ge 1,
+	\nonumber\\
+	&=CA^m\Sigma_{k}C^T,\quad m\ge 1.
+\end{align}
+O próximo exercício examina o sistema estocástico linear variante no tempo.
+\begin{Exercicio}\label{3.1.17}
+Suponha que em vez do sistema invariante no tempo \eqref{3.1.3} -- \eqref{3.1.4}, tenhamos o sistema variante no tempo
+\begin{align*}
+	x_{k+1} &=A_k x_k+ B_k u_k+ G_k w_k,\\
+	y_k &= C_k x_k + H_k v_k,
+\end{align*}
+e que as variáveis básicas sejam independentes e Gaussianas:
+\[
+	x_0 \sim N(\bar x_0, \Sigma_0), \quad
+	w_k \sim N(0,Q_k), \quad
+	v_k \sim N(0,R_k).
+\]
+Mostre que a probabilidade de transição em $m$ passos é Gaussiana,
+\[
+	p(x_{k+m}\;|\;x_k,\,u_k,\,\dots,u_{k+m-1})
+	\sim N\left(A_{k+m-1}\dots A_kx_k+
+	\sum_{j=0}^{m-1}A_{k+m-1}\dots A_{k+j+1}
+	B_{k+j}u_{k+j},\;\; \Sigma_{k+m\;|\;k}
+	\right).
+\]
+Além disso, a covariância pode ser calculada pela equação linear de diferenças variantes no tempo
+\begin{align*}
+	\Sigma_{k+m\;|\;k} &=
+	A_{k+m-1}\,\Sigma_{k+m-1\;|\;k}\,A_{k+m-1}^T
+	+G_{k+m-1}Q_{k+m-1}G_{k+m-1}^T,\\
+	\Sigma_{k\;|\;k} &= 0.
+\end{align*}
+\end{Exercicio}
+
+Ao longo do exposto, assumimos que o ruído $\{w_k\}$ que entra no sistema é um processo independente. O próximo exercício mostra como estender essa suposição ampliando o vetor de estado.
+
+\begin{Exercicio}\label{3.1.18}
+Suponha que a sequência de ruídos $\{w_0,\,w_1,\,\dots\}$ não seja independente, de modo que o sistema \eqref{3.1.3}--\eqref{3.1.4} não é um sistema estocástico linear como definido. No entanto, suponha que o próprio $\{w_r\}$ seja a saída de um sistema linear
+\begin{align*}
+	\xi_{k+1} &= F \xi_k+\epsilon_k,\\
+	w_k&=D \xi_k+\delta_k,
+\end{align*}
+em que $\{x_0,\xi_0,\dots,v_0,\dots,\epsilon_0,\dots,\delta_0,\dots\}$ sejam Gaussianas independentes. Mostre que $\{y_k\}$ pode ser escrito como a saída de um sistema estocástico linear.
+
+[Dica: considere o vetor de estados $\varsigma_k:=(x_k^T,\xi_k^T)^T$.]
+\end{Exercicio}
+
+Assim nossa definição de sistemas lineares estocásticos engloba os casos nos quais a entrada de ruído seja  gerada por uma filtragem de ruído branco Gaussiano via algum sistema linear estocástico.
+
+
+
+
+
+%%%%%%%%%%%%%% s
+\section{Sistemas Lineares não Gaussianos}
+%%%%%%%%%%%%%% s
+Considere o sistema linear \eqref{3.1.3}, mas suponha que as variáveis básicas independentes $x_0,w_0,\dots,v_0,\dots$ não sejam Gaussianas. Mas assuma que suas médias e covariâncias sejam as mesmas de antes:
+\[
+\begin{aligned}
+	\E x_0&=\bar x_0, \quad \E w_k = 0,
+	\quad \E v_k=0,\\
+	\cov(x_0)&=\Sigma_0, \quad \cov(w_k)=W,
+	\quad \cov(v_k)=R.
+\end{aligned}
+\]
+Considere um controle de malha aberta de modo que $g_k=u_k,\;k\ge0$, sejam funções constantes.
+
+Sejam
+\[
+\begin{aligned}
+	\bar x_{k+m\;|\;k}&:= \E(x_{k+m}
+	\;|\;x_k,u_k,\dots,u_{k+m-1}),\\
+	\Sigma_{k+m\;|\;k}&:=
+	\E\left([x_{k+m}-\bar x_{k+m\;|\;k}]
+	[x_{k+m}-\bar x_{k+m\;|\;k}]^T
+	\;\big|\;x_k,u_k,\dots,u_{k+m-1}\right),
+\end{aligned}
+\]
+a média e covariância condicionais de $x_{k+m}$ dado $x_k$ respectivamente.
+
+De \eqref{3.1.7} segue que
+\[
+\begin{aligned}
+	\bar x_{k+m\;|\;k}&= A^mx_k+
+	\sum_{j=0}^{m-1}A^{m-1-j}Bu_{k+j},\\
+	\Sigma_{k+m\;|\;k} &=
+	\cov\left(\sum_{j=0}^{m-1}A^{m-1-j}
+	Gw_{k+j}\right)\\
+	&=A\,\Sigma_{k+m-1\;|\;k}\,A^T+GQG^T.
+\end{aligned}
+\]
+Comparando com \eqref{3.1.8}, vemos que os dois primeiros momentos condicionais são os mesmos que no caso Gaussiano. No entando, a distribuição condicional não precisa ser Gaussiana.
+
+De modo semelhante, a média e covariância (não condicionais)
+\[
+	\bar x_k:=\E x_k,\quad
+	\Sigma_k:=\E(x_k-\bar x_k)(x_k-\bar x_k)^T
+\]
+são dadas também pela \eqref{3.1.12}, quando o controle é de malha aberta.
+
+Essa coincidência para os dois primeiros momentos também valem para o caso variante no tempo do Exercício \ref{3.1.17}.
+
+
+
+
+
+%%%%%%%%%%%%%% s
+\section{Propriedades assintóticas}
+%%%%%%%%%%%%%% s
+Estudaremos o comportamento das matrizes de covariância $\Sigma_k$ dadas por \eqref{3.1.12}--\eqref{3.1.13} conforme $k\to\infty$, as quais reproduzimos aqui:
+\begin{align}
+	\Sigma_k &= A\Sigma_{k-1}A^T+GQG^T,
+	\quad k\ge 1, \label{3.3.1}\\
+	\Sigma_0&=\cov(x_0).
+\end{align}
+Substituições recursivas leva a
+\begin{equation}\label{3.3.3}
+	\Sigma_k = A^k\Sigma_0(A^k)^T+
+	\sum_{j=0}^{k-1}A^jGQG^T(A^j)^T.
+\end{equation}
+Para obter a convergência de $\Sigma_k$, precisamos que a série seja somável, e para isso precisamos que a matriz $A^j$ convirja para $0$.
+
+Lembre que a matriz $A$ é dita \textbf{estável} se seus autovalores são estritamente menores que $1$ em valor absoluto.
+
+\begin{Teo}\label{3.3.4}
+Suponha que $A$ seja estável. Então existe uma matriz positiva semidefinida $\Sigma_\infty$ tal que $\lim_{k\to \infty}\Sigma_k=\Sigma_\infty$. Além disso, $\Sigma_\infty$ é a única solução da equação
+\begin{equation}\label{3.3.5}
+	\Sigma_\infty = A \Sigma_\infty A^T
+	+GQG^T.
+\end{equation}
+\end{Teo}
+
+\begin{Dem}
+Sendo $A$ uma matriz estável, existem números $K<\infty$ e $0<\alpha<1$ de modo que todas as entradas da matriz $A^j$ são menores que $K\alpha^j$ em valor absoluto. Com isso, o primeiro termo em \eqref{3.3.3} desaparece e a soma converge conforme $k\to\infty$, e então
+\[
+	\lim_{k\to\infty}\Sigma_k=
+	\Sigma_\infty:=
+	\sum_{j=0}^{\infty}A^jGQG^T(A^j)^T.
+\]
+Depois, como $\Sigma_k$ converge para $\Sigma_\infty$, podemos tomar $k\to\infty$ em \eqref{3.3.1} e deduzir que $\Sigma_\infty$ acaba obedecendo \eqref{3.3.5}. Falta mostrar que \eqref{3.3.5} tem solução única. Suponha que $\Sigma^a_\infty$ e $\Sigma^b_\infty$ são duas soluções de \eqref{3.3.5}. Então $\Delta:=\Sigma^a_\infty-\Sigma^b_\infty$ satisfaz
+\[
+	\Delta = A\Delta A^T.
+\]
+Substituições recursivas levam a
+\[
+	\Delta = A^k\Delta(A^k)^T.
+\]
+Tomando o limite $k\to\infty$ mostra que $\Delta=0$ e portanto $\Sigma^a_\infty=\Sigma^b_\infty$.
+\end{Dem}
+
+A Equação \eqref{3.3.5} é chamada \textbf{equação de Lyapunov a tempo discreto}.
+
+\begin{Exercicio}\label{3.3.6}
+Suponha que $A$ seja estável. Se $\cov(x_0)=\Sigma_\infty$, então a função de covariância de $\{x_k\}$ é estacionária, ou seja, $\Sigma_k=\Sigma_\infty$ e $\Sigma_{k+m,\;k}=A^m\Sigma_\infty$ para todo $k>0$. Em geral, $\{x_k\}$ pode ser decomposta como
+\[
+	x_k=x_k'+x_k''
+\]
+onde a função de covariância de $\{x_k'\}$ é estacionária, e $\E\|x_k''\|^2\to0$ conforme $k\to\infty$. (A decomposição pode não ser única.)
+\end{Exercicio}
+
+\begin{Obs}\label{3.3.7}
+É possível que $A$ não seja estável e ainda assim $\Sigma_k$ convergir. Um exemplo trivial é quando $\Sigma_0=0=Q$, caso em que $\Sigma_k=0$ independentemente de $A$. Também pode acontecer de $\Sigma_\infty$ não ser estritamente positiva definida. Outro exemplo trivial é quando $A=0$ e a matriz $GQG^T$ não tem posto completo. Esses dois exemplos sugerem que se a perturbação de entrada $\{w_k\}$ afetar todas as componentes do estado, então a estabilidade de $A$ pode ser necessária para a convergência de $\Sigma_k$, e a covariância limite $\Sigma_\infty$ será positiva definida. Essa intuição acaba sendo bem fundamentada, desde que a noção de afetar todos os componentes do estado seja adequadamente definida.
+\end{Obs}
+Um par de matrizes $(A,\;S)$ de dimensões $n\times n$ e $n\times g$, respectivamente, é dito ser \textbf{alcançável} se a matriz $n\times ng$ $[S\;\;AS\;\;\dots\;\;A^{n-1}S]$ tem posto $n$. Essa nomenclatura é justificada pelo exercício que segue.
+\begin{Exercicio}\label{3.3.8}
+Mostre a equivalência das afirmações:\\
+1) $(A,\;S)$ é um par alcançável.\\
+2) A matriz $\sum_{j=0}^{n-1}A^jSS^T(A^j)^T$, que é $n\times n$, é positiva definida.\\
+3) Para todo $x\in\RR^n$ existe uma sequência $\{w_0,\;\dots,\;w_{n-1}\}$ de $\RR^g$ que leva o estado do sistema linear determinístico
+\[
+	x_{k+1}=Ax_k+Sw_k,\qquad k \ge0,
+\]
+do estado $x_0=0$ ao estado $x_n=x$.
+\end{Exercicio}
+\begin{Teo}\label{3.3.9}
+Suponha que $(A,\;S)$ seja alcançável. Então as seguintes afirmações equivalem:\\
+1) $A$ é estável.\\
+2) A equação
+\begin{equation}\label{3.3.10}
+	\Sigma = A\Sigma A^T+ SS^T
+\end{equation}
+tem uma solução $\Sigma$ positiva definida.
+\end{Teo}
+\begin{Dem}
+Se $A$ é estável, então pelo Teorema \ref{3.3.4} existe uma única solução $\Sigma$ em que
+\[
+	\Sigma = \sum_{j=0}^\infty
+	 A^jSS^T(A^j)^T.
+\]
+Como $(A,\;S)$ é alcançável, $\Sigma$ é positiva definida por (\ref{3.3.8}--(2)).
+
+Agora, suponha que $\Sigma$ é uma solução positiva definida de \eqref{3.3.10}. Então
+\begin{equation}\label{3.3.11}
+	\Sigma = A^k \Sigma (A^k)^T +
+	\sum_{j=0}^{k-1}A^jSS^T(A^j)^T, \quad
+	k\ge0.
+\end{equation}
+Seja $\lambda$ um autovalor de $A$ e $x\neq0$ um vetor tal que $A^Tx=\lambda x$. Multiplique \eqref{3.3.11} por $x^*$ à esquerda (transposto conjugado de $x$) e por $x$ à direita, e sendo $k=n-1$,
+\[
+	x^*\Sigma x=|\lambda|^{2(n-1)} x^*
+	 \Sigma x+
+	 x^*\left(\sum_{j=0}^{n-1}
+	 A^jSS^T(A^j)^T\right)x.
+\]
+A matriz entre parênteses (...) da equação anterior é positiva definida por (\ref{3.3.8}--(2)) e então o último termo é estritamente positivo. Consequentemente $|\lambda|<1$  e então $A$ é estável.
+\end{Dem}
+
+Voltemos à equação da covariância em \eqref{3.3.1}. Seja $S$ alguma matriz tal que
+\begin{equation}\label{3.3.12}
+	GQG^T=SS^T.
+\end{equation}
+Tal matriz $S$ é chamada de \textbf{raiz quadrada} da matriz $GQG^T$.
+
+\begin{Teo}\label{3.3.13}
+Suponha que $(A,\;S)$ seja alcançável. Então as seguintes afirmações equivalem.\\
+1) $A$ é estável.\\
+2) $\Sigma_k$ converge a uma matriz positiva definida $\Sigma_\infty$ conforme $k\to\infty$.
+\end{Teo}
+\begin{Dem}
+Segue imediatamente do Teorema \ref{3.3.9}.
+\end{Dem}
+\begin{Obs}
+A raiz quadrada em \eqref{3.3.12} não é única. Entretanto, de {\rm(\ref{3.3.8}--(2))}, vemos que $(A,\;S)$ é alcançável se, e somente se $\sum_{j=0}^{n-1}A^jSS^T(A^j)^T=\sum_{j=0}^{n-1}A^jGQG^T(A^j)^T$ é positiva definida. Portanto, a alcançabilidade de $(A,\;S)$ não depende da escolha da raiz quadrada em \eqref{3.3.12}.
+\end{Obs}
+
+
+
+
+
+%%%%%%%%%%%%%% s
+\section{Processos Gauss-Markovianos}
+%%%%%%%%%%%%%% s
+Um processo estocástico $\{x_k,\;k\ge0\}$ com valores em $\RR^n$ é Gauss-Markoviano (GM)\nomenclature{GM}{Gauss-Markoviano} se ele é: (a) Gaussiano, isto é, para todo $k$, a PD das variáveis aleatórias $x_0,\;\dots,\;x_k$ é Gaussiana, e (b) Markoviano, isto é,
+\begin{equation}\label{3.4.1}
+	p(x_{k+1}\;|\;x_k,\;\dots,\;x_0)
+	= p(x_{k+1}\;|\;x_k).
+\end{equation}
+
+Temos visto que o estado do processo $\{x_k\}$ dado por
+\[
+    x_{k+1}=A_kx_k+w_k,
+\]
+em que $x_0,\;w_0,\;w_1,\;\dots$ são independentes e Gaussianos é GM.
+Há a inversa desse fato, que deixamos como exercício.
+
+Seja $\{x_k\}$ um processo GM. Suponha $\E x_0=0$, e considere
+$\Sigma_k:=\cov(x_k)$, $\Sigma_{k+1,\;k}:=\cov(x_{k+1},x_k)$.
+\begin{Exercicio}\label{3.4.2}
+Mostre que
+\begin{align}\label{3.4.3}
+    \widehat x_{k+1\;|\;k} &:=
+    \E(x_{k+1}\;|\;x_k,\dots,x_0)
+    =\E(x_{k+1}\;|\;x_k)
+    \nonumber\\
+    &\phantom{:}=\Sigma_{k+1,\;k}\Sigma_k^{-1}x_k.
+\end{align}
+Agora, seja
+\[
+    w_k:=x_{k+1}-\widehat x_{k+1\;|\;k}.
+\]
+Mostre que as variáveis $x_0,\;w_0,\;w_1,\;\dots$ são independentes
+e Gaussianas. Assim, o processo GM $\{x_k\}$ pode ser representado por
+\begin{equation}\label{3.4.4}
+    x_{k+1}=A_kx_k+w_k,
+\end{equation}
+com $A_k=\Sigma_{k+1,\;k}\Sigma_k^{-1}$.
+
+\noindent
+[Dica: a primeira igualdade em \eqref{3.4.3} segue da propriedade de Markov
+\eqref{3.4.1}. Para a segunda igualdade e o restante do exercício, proceda
+como segue. Mostre que $x_{k+1}-\Sigma_{k+1,\;k}\Sigma_k^{-1}x_k$ e $x_k$
+não são correlacionadas calculando sua covariância.
+Lembre-se de que duas variáveis aleatórias Gaussianas conjuntamente
+são independentes se não estiverem correlacionadas. Por conseguinte,
+$\E(\,\widehat x_{k+1}-\Sigma_{k+1,\;k}\Sigma_k^{-1}x_k\;|\;x_k)=0$
+e então a segunda igualdade em \eqref{3.4.3} é verificada.]
+\end{Exercicio}
+
+No exercício, $w_k=x_{k+1}-\widehat x_{k+1\;|\;k}$ e $x_k$ juntos determinam
+$x_{k+1}$. O último é conhecido no tempo $k$; no entanto o primeiro é independente
+do passado, e portanto, desconhecido no tempo $k$. Por esse motivo
+$w_k:=\widehat x_{k+1\;|\;k}-x_{k+1}$
+é chamada de \textbf{a inovação}, ou nova informação sobre $x_{k+1}$
+que não estava presente no passado. A representação \eqref{3.4.4} é chamada
+\textit{representação da inovação} do processo $\{x_k\}$
+
+
+
+
+
+
+%%%%%%%%%%%%%% s
+\section{Notas}
+%%%%%%%%%%%%%% s
+Propriedades de sistemas lineares estocásticos são extensivamente discutidas
+em \cite{anderson-moore1979}. Este livro também estuda alcançabilidade
+e conceitos relacionados, incluindo controlabilidade e observabilidade.
+Outras propriedades de sistemas lineares estocásticos são apresentadas
+no Capítulo 7.
+
+
+
+

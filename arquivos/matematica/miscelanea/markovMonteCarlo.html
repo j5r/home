@@ -1,0 +1,84 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="./markovMonteCarlo.css" rel="stylesheet" type="text/css">
+        <script src="./markovMonteCarlo.js"></script>
+        <title>MarkovMonteCarlo</title>
+    </head>
+    <body onload="getData()">
+        <div style="text-align:center;">
+            <h1 style="color:#939;text-shadow: 5px 5px 13px #2228">
+                SIMULANDO UMA CADEIA DE MARKOV</h1>
+        </div>
+
+
+        <div id="conteiner">
+            <div id="entradas">
+                <span>Distribuição de X(0)</span><br>
+                <table >
+                    <tr>
+                        <td>
+                        Prob( X(1) = 1 )
+                        </td>
+                        <td>
+                            <input id="pi1" placeholder="10 (percentual)" autofocus="on">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        Prob( X(1) = 2 )
+                        </td>
+                        <td>
+                            <input id="pi2" placeholder="40 (percentual)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        Prob( X(1) = 3 )
+                        </td>
+                        <td>
+                            <input id="pi3" placeholder="50 (percentual)" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           k Estados
+                        </td>
+                        <td>
+                            <input id="nestados" placeholder="10 estados" value=10>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Simulações
+                        </td>
+                        <td>
+                            <input id="nsimulacoes"
+                             placeholder="1000 simulações" value="1000"
+                             >
+                        </td>
+                    </tr>
+                </table>
+                <button onclick="begin()"  id="botaoIniciar">Iniciar</button><br><br>
+                <a href="./markovExemplo.html" style="font-size:20px">
+                    Voltar à página anterior
+                    </a>
+
+            </div>
+
+            <div id="conteudo">
+                <div class="dados">
+                <div> k</div>
+                <div>Prob( X(k) = 1 )</div>
+                <div>Prob( X(k) = 2 )</div>
+                <div>Prob( X(k) = 3 )</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </body>
+</html>

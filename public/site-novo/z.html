@@ -1,0 +1,278 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            function mmenu_unclick(){
+                document.getElementById("mmenu").checked = false
+                }
+        </script>
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900&display=swap');
+            :root{
+                --cor-de-fundo: #101d;
+                --cor-aba-menu: #aaaacc40;
+                --cor-fundo-nav-li: #aaaacc45;
+                --cor-fundo-titulos-h1: #9992;
+                --cor-fundo-article: #98765433;
+                --cor-fundo-footer: #98765433;
+                --cor-a-hover: #8af;
+                --transparente: 20%;
+                }
+            *{
+                font-family: 'Nunito', sans-serif;
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-size: 4vmin;
+                text-align: justify;
+                list-style: none;
+                text-decoration: none;
+                }
+            body{
+                background-color: var(--cor-de-fundo);
+                }
+            main{
+                width: 70vw;
+                transition: all 1s;
+                }
+            article{
+                padding: 3vw;
+                margin-bottom: 5vh;
+                margin-left: 10vw;
+                width: 100%;
+                transition: all 1s;
+                border-radius: 7vmin;
+                background-color: var(--cor-fundo-article);
+                }
+            h1{
+                margin-top: 1vh;
+                font-size: 8vmin;
+                font-weight: 900;
+                }
+            p{
+                margin-top: 1vh;
+                padding: 1vmin;
+                }
+            input{
+                display: none;
+                }
+            label img{
+                position: fixed;
+                top: 4vmin;
+                left: 1vw;
+                filter: invert(100%);
+                opacity: var(--transparente);
+                padding: 1w;
+                width: 13vmin;
+                height: 10vmin;
+                z-index: 2;
+                }
+            nav{
+                position: fixed;
+                width: 30vw;
+                height: 100%;
+                top: 0vmin;
+                left: -25vw;
+                transition: all 1s;
+                z-index: 1;
+                }
+            nav ul{
+                position: fixed;
+                top: 20vmin;
+                width: inherit;
+                }
+            nav ul li{
+                padding: 2vmin;
+                padding-left:2vw;
+                width: auto;
+                transition: all 1s;
+                }
+            nav ul li:hover{
+                background-color: var(--cor-fundo-nav-li);
+                }
+            #mmenu:checked ~ nav{
+                background-color: var(--cor-aba-menu);
+                left: 0;
+                }
+            #mmenu:checked ~ main{
+                margin-left: 8vw;
+                opacity: var(--transparente);
+                }
+            #mmenu:checked ~ label img{
+                opacity: 100%;
+                }
+            a{
+                transition: all .3s;
+                }
+            a:hover{
+                color: var(--cor-a-hover);
+                text-shadow: 0 0 3vw #fff;
+                }
+            article h1{
+                padding: 3vmin;
+                background-color: var(--cor-fundo-titulos-h1);
+                border-radius: 5vmin;
+                }
+            footer{
+                display: flex;
+                flex-wrap: wrap;
+                width: auto;
+                padding: 3vw;
+                margin: auto;
+                margin-bottom: 3vmin;
+                background-color: var(--cor-fundo-footer);
+                transition: all 1s;
+                }
+            footer div{
+                justify-contents: space-between;
+                text-align: center;
+                width: 30%;
+                padding: 1vmin;
+                transition: all .4s;
+                }
+            footer div:hover{
+                background-color: var(--cor-fundo-nav-li);
+                }
+            #mmenu:checked ~ footer{
+                opacity: var(--transparente);
+                }
+        </style>
+    </head>
+
+    <body>
+            <input id="mmenu" type="checkbox">
+            <label for="mmenu">
+                <!--Imagem do menu-->
+                <img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png">
+            </label>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://youtu.be/riSVzwlSnhw"
+                        target="_blank">Vídeo</a>
+                    </li>
+                    <li> <a href="https://youtu.be/1oBktonR0Lw"
+                        target="_blank">Meia hora</a>
+                    </li>
+                </ul>
+            </nav>
+        <main onclick="mmenu_unclick()">
+            <article>
+                <h1>Menu</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s, when an unknown printer took a
+                    galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap
+                    into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset
+                    sheets containing Lorem Ipsum passages, and more recently
+                    with desktop publishing software like Aldus PageMaker including
+                    versions of Lorem Ipsum.
+                </p>
+                <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random
+                    text. It has roots in a piece of classical Latin literature
+                    from 45 BC, making it over 2000 years old. Richard McClintock,
+                    a Latin professor at Hampden-Sydney College in Virginia, looked
+                    up one of the more obscure Latin words, consectetur, from a Lorem
+                    Ipsum passage, and going through the cites of the word in
+                    classical literature, discovered the undoubtable source. Lorem
+                    Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
+                    Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+                    written in 45 BC. This book is a treatise on the theory of ethics,
+                    very popular during the Renaissance. The first line of Lorem
+                    Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
+                    section 1.10.32.
+                </p>
+                <p>
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                </p>
+            </article>
+
+            <article>
+                <h1>Menu</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s, when an unknown printer took a
+                    galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap
+                    into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset
+                    sheets containing Lorem Ipsum passages, and more recently
+                    with desktop publishing software like Aldus PageMaker including
+                    versions of Lorem Ipsum.
+                </p>
+                <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random
+                    text. It has roots in a piece of classical Latin literature
+                    from 45 BC, making it over 2000 years old. Richard McClintock,
+                    a Latin professor at Hampden-Sydney College in Virginia, looked
+                    up one of the more obscure Latin words, consectetur, from a Lorem
+                    Ipsum passage, and going through the cites of the word in
+                    classical literature, discovered the undoubtable source. Lorem
+                    Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
+                    Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+                    written in 45 BC. This book is a treatise on the theory of ethics,
+                    very popular during the Renaissance. The first line of Lorem
+                    Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
+                    section 1.10.32.
+                </p>
+                <p>
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                </p>
+            </article>
+
+
+        </main>
+    </body>
+
+    <footer>
+            <div>
+                <a
+                href="http://lattes.cnpq.br/3866983332299702"
+                target="_blank">
+                Lattes
+                </a>
+            </div>
+            <div>
+                <a
+                href="https://orcid.org/0000-0003-1443-2034"
+                target="_blank">
+                ORCID
+                </a>
+            </div>
+            <div>
+                <a
+                href="https://www.linkedin.com/in/junior-r-ribeiro-1b3378109"
+                target="_blank">
+                LinkedIn
+                </a>
+            </div>
+            <div>
+                <a
+                href="https://www.facebook.com/JrRodRib"
+                target="_blank">
+                FaceBook
+                </a>
+            </div>
+            <div>
+                <a
+                href="https://github.com/j5r"
+                target="_blank">
+                GitHub
+                </a>
+            </div>
+            <div>
+                <a
+                href="https://www.youtube.com/c/juniorribeiro2016"
+                target="_blank">
+                YouTube
+                </a>
+            </div>
+    </footer>
+</html>

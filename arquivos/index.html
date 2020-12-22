@@ -1,0 +1,80 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+<head>
+    <link href="./../global.css" rel="stylesheet" type="text/css">
+    <script src="./../index.js"></script>
+    <meta charset="utf-8" />
+   </head>
+
+
+
+<body>
+<div id="corpo">
+    <script>
+        cabecalho(); menu()
+        changeAttr("avatar","src","../public/eu.svg")
+
+        changeAttr("menu_links_a","href","../index.html")
+        changeAttr("menu_producoes_a","href","../producoes/producoes.html")
+        changeAttr("menu_arquivos_a","href","./index.html")
+
+        addMenu("voltar","Voltar","./../index.html","voltar")
+    </script>
+
+
+
+
+
+
+        <!--
+            Centro
+        -->
+        <div id="conteudo">
+            <h1>ARQUIVOS POR ASSUNTOS</h1><br>
+            <ul>
+                <li class="spaced">
+                    <a class="link" href="./matematica/index.html" >
+                        Matemática...
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="#" >
+                        Música... (nada ainda...)
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="./programacao/index.html" >
+                        Programação
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="./latex/index.html" >
+                        LaTeX...
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="#" >
+                        Idiomas... (nada ainda...)
+                    </a>
+                </li>
+                <li class="spaced">
+                    <a class="link" href="#" >
+                        Assuntos diversos... (nada ainda...)
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+</div>
+
+
+
+</body>
+<footer>
+    <button id="botao-topo" onclick="rolarParaTopo()">^
+    </button>
+</footer>
+
+</html>

@@ -1,0 +1,93 @@
+.destaque{
+background: #044;
+border-radius: 15px;
+padding: 5px;
+}
+
+#propriedademarkov{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+
+img.download{
+filter: invert();
+margin-right: 10%;
+}
+img.download:hover{
+filter: brightness(32%) invert(70%);
+}
+
+
+#experimentosemreposicao {
+margin-top: 20px;
+margin-bottom: 20px;
+border-top: 15px solid #f889;
+border-bottom: 15px solid #f889;
+border-left: 15px solid #f889;
+border-radius: 15px;
+}
+#experimentosemreposicao caption {
+border-top: 20px solid #f889;
+padding: 5px;
+font-weight: bold;
+border-radius: 15px;
+}
+#experimentosemreposicao tr {
+
+}
+#experimentosemreposicao tr:nth-child(3) td{
+border-bottom: 7px solid #fff9;
+}
+#experimentosemreposicao tr:nth-child(4) td{
+border-top: 7px solid #fff9;
+}
+
+#experimentosemreposicao tr td {
+border: 2px solid #fff9;
+padding: 5px;
+text-align: center;
+}
+#experimentosemreposicao tr td:first-child {
+color: orange;
+}
+
+
+/* *********************************** */
+
+
+#experimentocomreposicao {
+margin-top: 20px;
+margin-bottom: 20px;
+border-top: 15px solid #8f85;
+border-bottom: 15px solid #8f85;
+border-left: 15px solid #8f85;
+border-radius: 15px;
+}
+#experimentocomreposicao caption {
+border-top: 20px solid #8f85;
+padding: 5px;
+font-weight: bold;
+border-radius: 15px;
+}
+#experimentocomreposicao tr {
+
+}
+#experimentocomreposicao tr:nth-child(3) td{
+border-bottom: 7px solid #fff9;
+}
+#experimentocomreposicao tr:nth-child(4) td{
+border-top: 7px solid #fff9;
+}
+
+#experimentocomreposicao tr td {
+border: 2px solid #fff9;
+padding: 5px;
+text-align: center;
+}
+#experimentocomreposicao tr td:first-child {
+color: cyan;
+}
+
+

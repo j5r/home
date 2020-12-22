@@ -1,0 +1,88 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{txfonts,float,hyperref}
+
+\newtheorem{obs}{Observação}
+
+\def\A{$\mathbf{A}$\,}
+\def\B{$\mathbf{B}$\,}
+\def\F{\mathcal{F}}
+\def\P{\mathcal{P}}
+\def\NN{\mathbb{N}}
+\def\RR{\mathbb{R}}
+\def\S{\mathcal{S}}
+
+
+
+\begin{document}
+
+\section{\href{https://pt.wikipedia.org/wiki/Propriedade_de_Markov}{Propriedade de Markov}}
+Considere o espaço de probabilidade $(\Omega,\F,\P)$, filtração $(\F_s,s\in I=\RR^+)$ e o espaço mensurável $(\S,\Sigma)$. O processo estocástico $X=(X_t,t\in I)$ nesse espaço mensurável com a filtração $\F$ é dito ter a propriedade de Markov se, para todo $\mathcal{A}\in\Sigma$, vale a igualdade
+
+\[
+\P(X_t\in\mathcal{A}\;|\;\F_s)=\P(X_t\in\mathcal{A}\;|\;X_s)
+\]
+sempre que $t>s$.
+
+Para um conjunto $\S$ discreto e $I=\NN$, temos 
+\[
+\P(X_n=x_n\;|\;X_{n-1}=x_{n-1},...,X_0=x_0)=\P(X_n=x_n\;|\;X_{n-1}=x_{n-1})
+\]
+
+
+
+
+
+Em resumo, a propriedade de Markov diz que eventos futuros dependem apenas do evento atual, e não do histórico $\F_t$ ocorrido.
+
+
+
+\subsection{Contraexemplo: \href{https://math.stackexchange.com/questions/89394/example-of-a-stochastic-process-which-does-not-have-the-markov-property}{Propriedade de Markov}}
+Em um experimento, temos uma urna com 3 bolas: \A, \A e \B. No experimento, retiramos uma bola ``ontem'', outra ``hoje'' e outra ``amanhã''. Queremos calcular a probabilidade de ocorrer \B no dia de amanhã, conhecendo-se o ocorrido de hoje e de ontem. Nesse experimento, as bolas retiradas não são repostas.
+
+\begin{table}[H]\centering
+\caption{Experimento sem reposição}
+\begin{tabular}{|c|c|c|||c|}
+\hline
+&Info. dada (ontem) & Info. dada (hoje) & Info. questionada (amanhã)\\\hline
+Bola & \A & \A & \B\\
+Prob. & 1 & 1 & 1\\
+\hline\hline
+Bola & ? & \A & \B\\
+Prob. & --- & 1 & 1/2\\
+\hline
+\end{tabular}
+\end{table}
+
+Veja na terceira coluna, que a observação dos eventos passados (ontem) influenciam nos eventos futuros (amanhã).
+\subsection{Exemplo: Propriedade de Markov}
+Considere o mesmo experimento anterior, mas agora com a reposição das bolas.
+
+\begin{table}[H]\centering
+\caption{Experimento com reposição}
+\begin{tabular}{|c|c|c|||c|}
+\hline
+&Info. dada (ontem) & Info. dada (hoje) & Info. questionada (amanhã)\\\hline
+Bola & \A & \A & \B\\
+Prob. & 1 & 1 & 1/3\\
+\hline\hline
+Bola & ? & \A & \B\\
+Prob. & --- & 1 & 1/3\\
+\hline
+\end{tabular}
+\end{table}
+
+Veja na terceira coluna, que a observação dos eventos passados (ontem) não influenciam nos eventos futuros (amanhã).
+
+
+\begin{obs} Um espaço mensurável, denotado por $(A,P)$, é um par em que $A$ é um conjunto e $P$ é um conjunto de conjuntos (uma $\sigma$-álgebra) sobre $A$.
+\end{obs}
+\begin{obs} Uma $\sigma$-álgebra sobre um conjunto $A$ é um conjunto de subconjuntos de $A$ de forma que as operações de \emph{união}, \emph{interseção} e \emph{complemento} sejam fechadas em $A$ de forma contável. Exemplos: denote por $P(A)$ o \emph{conjunto das partes de $A$}. Seja $A=\{a,b,c\}$, e $P(A)=\Big\{\emptyset,\{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}\Big\}$. Assim, $P$ é uma $\sigma$-álgebra sobre o conjunto $A$, pois as operações de \emph{união}, \emph{interseção} e \emph{complemento} são fechadas em $P(A)$.   Outra $\sigma$-álgebra para o mesmo conjunto é $Q(A)=\Big\{\emptyset,\{c\},\{a,b\},\{a,b,c\}\Big\}$.
+\end{obs}
+\begin{obs} Uma operação $*$ é fechada em um conjunto $A$ quando $(a*b\in A)\; \forall a\in A\;\forall b\in A$. Exemplo: a soma e multiplicação são fechadas em $\NN$, mas a subtração e divisão não. A soma, subtração e multiplicação são fechadas em $\mathbb{Z}$, mas a divisão não.
+\end{obs}
+
+\end{document}

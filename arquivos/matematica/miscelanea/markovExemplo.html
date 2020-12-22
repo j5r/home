@@ -1,0 +1,96 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="./markovExemplo.css" rel="stylesheet" type="text/css">
+        <script src="./plotly-basic-latest.min.js"></script>
+        <script src="./markovExemplo.js"></script>
+        <title>MarkovChain</title>
+    </head>
+    <body>
+        <div style="text-align:center;">
+            <h1 style="color:#939;text-shadow: 5px 5px 13px #2228">
+                SIMULANDO UMA CADEIA DE MARKOV</h1>
+        </div>
+        <div style="display:flex;">
+
+            <div id="conteiner"><!-- figuras -->
+                <div id="figconteiner">
+                    <div id="estado1" class="bullet" name="">1</div>
+                    <div id="estado2" class="bullet" name="">2</div>
+                    <div id="estado3" class="bullet" name="">3</div>
+                </div>
+            </div>
+            <div>
+
+
+
+                <div id="dados"> <!-- textos -->
+                    <pre id="matriz">
+                        P = [%probabilidade original
+                                    <span id="m11" class="">[<span id="m111">0.5</span>, <span id="m112">0.2</span>, <span id="m113">0.3</span>],</span>
+                                    <span id="m12" class="">[<span id="m121">0.3</span>, <span id="m122">0.3</span>, <span id="m123">0.4</span>],</span>
+                                    <span id="m13" class="">[<span id="m131">0.1</span>, <span id="m132">0.9</span>, <span id="m133">0.0</span>],</span>
+                            ]
+
+                        P = [%probabilidade acumulada
+                                    <span id="m21" >[<span id="m211">0.5</span>, <span id="m212">0.7</span>, <span id="m213">1.0</span>],</span>
+                                    <span id="m22" >[<span id="m221">0.3</span>, <span id="m222">0.6</span>, <span id="m223">1.0</span>],</span>
+                                    <span id="m23" >[<span id="m231">0.1</span>, <span id="m232">1.0</span>, <span id="m233">1.0</span>],</span>
+                            ]</pre>
+                    <a href="./markovMonteCarlo.html"
+                        style="font-size:20px">
+                        Seguir para simulação Monte Carlo.
+                    </a><br><br>
+                    <a href="./index.html"
+                        style="font-size:20px">
+                        Voltar ao índice.
+                    </a>
+                </div>
+            </div>
+
+
+            <div style="
+                margin-left:50px;
+                text-align:center;
+                width:30%;">
+                O estado atual é<br>
+                <span id="oldestado"></span><br>
+
+                portanto, usaremos essa linha de P
+                para sortear o próximo estado.<br><br>
+
+                O número aleatório sorteado foi de <br>
+                <span id="random"></span>.<br>
+                Portanto o próximo estado será<br>
+                <span id="estado"></span>.<br><br>
+
+
+
+
+                <div style="margin: 0 0 50px 0"> <!-- entradas -->
+                    <input
+                        value="1"
+                        id="primeiroEstado"
+                        placeholder="Primeiro estado"
+                        >
+                    <button
+                        id="btnprimeiroEstado"
+                        onclick="begin()"
+                        >
+                        Começar a animação
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <div id="transicao">
+        </div>
+
+    </body>
+</html>

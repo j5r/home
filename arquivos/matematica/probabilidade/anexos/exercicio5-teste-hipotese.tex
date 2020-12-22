@@ -1,0 +1,79 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb,amsmath}
+\setlength{\parindent}{0pt}
+\newenvironment{ans}{\color{blue}\begin{quote}}{\end{quote}}
+
+\begin{document}
+5) A resistência de um certo tipo de cabo de aço é uma variável aleatória modelada pela distribuição Normal com desvio padrão igual a 6 kgf. Uma amostra de tamanho 25 desses cabos, escolhida ao acaso, forneceu média igual a 9,8 kgf. Teste as hipóteses $\mu = 13$ versus $\mu = 8$ e tire suas conclusões a um nível de significância de $10\%$.
+
+
+
+\dotfill
+
+$\bigstar$ 
+\[
+x \sim N(\mu,6^2)
+\]
+\[
+\bar X_{(n=25)} \sim N(\mu, 36/25)
+\]
+
+$\bigstar$ Significância $\alpha=0.1$
+
+\qquad$H_0: \qquad \mu=13$
+
+\qquad$H_a: \qquad \mu=8$
+
+$\bigstar$ Vamos determinar a região crítica.
+
+Tomemos $Z\sim N(0,1)$.
+
+\[\begin{aligned}
+0.1&=P(Z<-1.2815) \\
+&= P\left(\frac{\sqrt{25}(\bar X - \mu)}{\sqrt{36/25}} <-1.2815\;\Big|\;\mu=13\right) 
+\\
+&= P\left(\frac{25(\bar X - \mu)}{6} < -1.2815\;\Big|\;\mu=13\right)
+\\
+&= P(\bar X <\mu-1.2815\cdot 6/25\;|\;\mu=13)
+\\
+&= P(\bar X <13-1.2815\cdot 6/25)
+\\
+&= P(\bar X<12.6924)
+\end{aligned}\]
+
+Assim, obtivemos $RegiaoCritica=\{x; x<12.6924\}$.\\
+
+$\bigstar$ Teste: 
+\begin{quote}
+Sob o nível de significância $\alpha=0.1$,\\
+se $\bar x_0 \in RegiaoCritica$, rejeitamos $H_0$;\\
+se $\bar x_0\not \in RegiaoCritica$, aceitamos $H_0$.
+\end{quote}
+
+Evidência observada: $\bar x_0=9.8$
+
+$\bigstar$ Decisão: como a evidência observada pertence à região crítica, decidimos rejeitar $H_0$ ao nível de significância $\alpha=0.1$.
+
+
+Nível Descritivo ou Valor P:
+\[
+P=P(X\text{ é um valor mais extremo que a evidência observada}\;|\;H_0\ verdadeira)
+\]
+\[
+P\le\alpha \Rightarrow \mbox{rejeita-se $H_0$}.
+\]
+
+Neste exercício,
+\[
+P=P(X< \bar x_0\;|\;H_0\ verdadeira)=P(X< 9.8\;|\;\mu=13)=0.00383
+\]
+
+Nível descritivo $P=0.00383\le \alpha=0.1$ (implica a rejeição de $H_0$).
+
+
+\end{document}

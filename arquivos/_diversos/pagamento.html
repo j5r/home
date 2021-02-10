@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+</head>
+
+<body>
+    <div class="nome">
+        <strong>Nome:</strong>
+        <i>Junior Rodrigues Ribeiro</i>
+    </div>
+    <div class="bancos">
+        <div class="banco-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Banco_do_Brasil_logo.svg/250px-Banco_do_Brasil_logo.svg.png" alt="Banco do Brasil" class="bb">
+            <div class="texto">
+                <div class="texto-item">
+                    <strong>Agência: &ThickSpace;&ThickSpace;</strong>
+                    <i> 4336-2</i>
+                </div>
+                <div class="texto-item">
+                    <strong>Conta Corrente: &ThickSpace;&ThickSpace;</strong>
+                    <i> 17143-3</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="banco-item">
+            <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/0/08/Logo_nubank.png/200px-Logo_nubank.png" alt="Nubank" class="nubank">
+            <div class="pix">
+                <strong>Chave PIX: &ThickSpace;&ThickSpace;</strong>
+                <i> j5r@outlook.com</i>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<style>
+     :root,
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+        background-color: #ccf;
+    }
+    
+    .bancos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: row;
+    }
+    
+    .banco-item {
+        width: 30vw;
+        margin: 0 5%;
+        height: 20%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        border-left: double #88f 8px;
+    }
+    
+    img {
+        height: 55px;
+        margin: 5px;
+        width: max-content;
+    }
+    
+    .texto {
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .texto-item,
+    .pix {
+        display: flex;
+    }
+    
+    .nome {
+        position: fixed;
+        left: 30vw;
+        top: 30vh;
+        padding: 0 10px;
+        height: 40px;
+        border-left: double #f88 8px;
+    }
+    /*----------------------------------------------------------*/
+    
+    @media (max-width: 480px) {
+        .nome {
+            margin: 0 15px;
+            margin-top: 20px;
+            position: unset;
+        }
+        .bancos {
+            flex-direction: column;
+            height: inherit;
+            justify-content: left;
+            align-items: unset;
+            margin: 5px;
+        }
+        .banco-item {
+            margin: 20px 10px;
+        }
+        .bb {
+            width: 200px;
+        }
+        .texto {
+            padding: 0;
+        }
+        .texto-item,
+        .pix {
+            padding: 0 10px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: unset;
+            width: 50vw;
+        }
+    }
+</style>
+
+
+</html>

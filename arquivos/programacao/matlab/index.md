@@ -72,9 +72,7 @@
      - o negativo do índice de uma das variáveis criadas, se a variável for usada transposta **X'**; P e Q serão obrigatórios.
      - zero, caso o bloco declarado não contenha nenhuma variável.
    - `P, Q` são fatores matriciais ou escalares que pré e pós-multiplicam o termo declarado. Exemplo: **P.X.Q**.
-   - `F` é um parâmetro opcional, igual a **'s'**, indicando o caso em que o bloco aparece repetido transposto (simétrico). 
-   
-   Exemplo: **P.X.Q + Q'.X'.P'**.
+   - `F` é um parâmetro opcional, igual a **'s'**, indicando o caso em que o bloco aparece repetido transposto (simétrico). <br> Exemplo: **P.X.Q + Q'.X'.P'**.
 
 
 

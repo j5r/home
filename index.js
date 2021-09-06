@@ -93,7 +93,7 @@ function menu(){
 
     addMenu("menu_arquivos","Arquivos","./arquivos/index.html")
 
-    addMenu("menu_listaafazeres","Lista de afazeres","https://j5r.github.io/afazeres")
+    
     }
 
 

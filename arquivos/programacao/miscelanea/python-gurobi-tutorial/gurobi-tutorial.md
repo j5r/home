@@ -11,6 +11,8 @@ strong{color: purple;}
 
 # **Tutorial - Gurobi (Python 🐍)**
 
+<span style="position:absolute;right:3vh;"><strong>By Junior R. Ribeiro</strong></span>
+
 Vamos implementar o modelo de **Múltiplas Mochilas Binárias**.
 
 $$
@@ -169,7 +171,7 @@ for m in id_mochilas:
     if round(x[i, m].X) == 1:
       print(f"\t{ i }") # --> \t faz uma tabulação
   # imprimindo as folgas (Slack) das restrições de capacidade
-  print(f"\tSobrou [{ round(restrs_capacidade[m].Slack) }] de espaço.")
+  print(f"\tSobrou espaço de [{ round(restrs_capacidade[m].Slack) }] unidades.")
   print("") # --> pula uma linha para separar
 ```
 
@@ -181,13 +183,13 @@ Na Mochila_1 os seguintes itens foram alocados:
     Item_6
     Item_12
     Item_13
-    Sobrou [0] de espaço.
+    Sobrou espaço de [0] unidades.
 
 Na Mochila_2 os seguintes itens foram alocados:
     Item_9
     Item_11
     Item_15
-    Sobrou [2] de espaço.
+    Sobrou espaço de [2] unidades.
 
 Na Mochila_3 os seguintes itens foram alocados:
     Item_1
@@ -195,12 +197,12 @@ Na Mochila_3 os seguintes itens foram alocados:
     Item_3
     Item_4
     Item_14
-    Sobrou [0] de espaço.
+    Sobrou espaço de [0] unidades.
 
 Na Mochila_4 os seguintes itens foram alocados:
     Item_5
     Item_7
     Item_8
     Item_19
-    Sobrou [0] de espaço.
+    Sobrou espaço de [0] unidades.
 ```

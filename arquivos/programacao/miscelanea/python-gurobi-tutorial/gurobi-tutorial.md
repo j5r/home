@@ -28,11 +28,11 @@ $$
 
 O modelo tem um conjunto de mochilas e um conjunto de itens. Cada item tem um valor monetário e um peso. Cada mochila tem uma capacidade. O problema é escolher a melhor **combinação** de itens para serem colocados em cada mochila, de modo que se maximize o valor total e que não exceda a capacidade das mochilas.
 
-- O objetivo é maximizar os valor total dos itens colocados nas mochilas (função objetivo **FO**).
+- O objetivo é maximizar o valor total dos itens colocados nas mochilas (função objetivo **FO**).
 
 - Para cada mochila **m**, a soma dos pesos dos itens não deve ultrapassar a capacidade dessa mochila **m** (restrições em **A**).
 
-- Cada item **i** só deve aparecer, _**no máximo**_, **`uma`** vez em cada mochila **m** (restrições em **B**).
+- Cada item **i** só deve ser alocado para, **no máximo**, uma única mochila **m** (restrições em **B**). Perceba que o item **i** também pode não ser alocado a nenhuma mochila (caso $x_{im}$ seja zero para todo $m$).
 
 - As variáveis de decisão $x_{im}$ são binárias, só podem assumir os valores **zero** ou **um** (restrições em **C**).
   > A variável $x_{im}$ é igual a **1** quando o item **i** for colocado na mochila **m**.

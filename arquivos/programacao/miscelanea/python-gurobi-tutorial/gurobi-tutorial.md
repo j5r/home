@@ -117,12 +117,12 @@ modelo = gp.Model("Múltiplas Mochilas Binárias")
 # No nosso caso, é uma matriz, indexada em "itens" e "mochilas"
 x = modelo.addVars(id_itens, id_mochilas, vtype=gp.GRB.BINARY)
 
-# Para construir a função objetivo e as resrições, usaremos os dicionários
+# Para construir a função objetivo e as restrições, usaremos os dicionários
 # com os dados (Passo 3); e para os loops "for" usaremos os ids criados (Passo 1)
 
 # Construindo a função objetivo
 # o somatório é feito pelo método gp.quicksum()
-# leia o código de trás pra frente:
+# para facilitar a leitura, leia o código de trás pra frente:
 #   for m in id_mochilas
 #   for i in id_itens
 #   x[i,m] * dict_valores[i]
@@ -170,7 +170,7 @@ for m in id_mochilas:
   for i in id_itens:
     if round(x[i, m].X) == 1:
       print(f"\t{ i }") # --> \t faz uma tabulação
-  # imprimindo as folgas (Slack) das restrições de capacidade
+  # imprimindo as folgas/sobras (Slack) das restrições de capacidade
   print(f"\tSobrou espaço de [{ round(restrs_capacidade[m].Slack) }] unidades.")
   print("") # --> pula uma linha para separar
 ```
@@ -206,3 +206,5 @@ Na Mochila_4 os seguintes itens foram alocados:
     Item_19
     Sobrou espaço de [0] unidades.
 ```
+
+Para estudar outros modelos, recomendo a [Playlist do Youtube](https://www.youtube.com/playlist?list=PL9H2pvV0741ZxpxH36aCClPUZ6YHL9fYn).

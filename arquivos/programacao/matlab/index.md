@@ -7,10 +7,11 @@
 3.  `newlmi()`, para declarar uma nova inequação;
 4.  `lmiterm(...)`, para declarar os blocos dentro das matrizes da inequação;
 5.  `getlmis()`, para capturar todo o conjunto de lmis declaradas;
-6.  Solvers
+6.  `decnbr(...)` para obter o número total de variáveis;
+7.  Solvers
     - `feasp(...)`, para factibilidade;
     - `mincx(...)`, para solução;
-7.  `dec2mat(...)`, para recuperar a solução.
+8.  `dec2mat(...)`, para recuperar a solução.
 
 ## Explicando melhor...
 
@@ -76,6 +77,9 @@ Modelo da Inequação:
   - `P, Q` são fatores matriciais ou escalares que pré e pós-multiplicam o termo declarado. Exemplo: **P.X.Q**.
   - `F` é um parâmetro opcional, igual a **'s'**, indicando o caso em que o bloco aparece repetido transposto (simétrico). <br> Exemplo: **P.X.Q + Q'.X'.P'**.
 
+- `LMI_SYS = getlmis()` captura o conjunto de LMIs declaradas para então resolvê-las.
+- `decnbr(LMI_SYS)` retorna o número de variáveis do sistema.
+
 ## Exemplo completo
 
 ```matlab
@@ -100,6 +104,8 @@ lmiterm([ System, 1, 1,       0], eye(3))
 lmiterm([-System, 2, 2, P_index],  1, 1)
 
 LMIS = getlmis();
+
+decnbr(LMIS)
 
 cost = [1, 0, 0, 0, 0, 0];
 

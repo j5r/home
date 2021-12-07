@@ -14,7 +14,7 @@
 
 ## Explicando melhor...
 
-- `[P_index, n, matrix] = lmivar(T, [D, t])`, em que `[D, t]` é uma matriz **Nx2** em que a estrutura da variável desejada contém **N** blocos-diagonais (veja o exemplo abaixo para ficar mais claro).
+- `[P_index, last_var, matrix] = lmivar(T, [D, t])`, em que `[D, t]` é uma matriz **Nx2** em que a estrutura da variável desejada contém **N** blocos-diagonais (veja o exemplo abaixo para ficar mais claro).
 
   - **T** é o tipo de matriz
 
@@ -43,7 +43,7 @@
           ```
     - `T == 2` matriz cheia, `[D, t]` é uma matriz **1x2**. A variável criada será uma matriz retangular **Dxt**.
 
-    - `T == 3` outras estruturas, `[D, t]` na verdade é qualquer matriz de qualquer tamanho. Os sinais das entradas dessa matriz serão mantidos, quer sejam positivos, negativos ou zero. Exemplo:
+    - `T == 3` outras estruturas, `[D, t]` na verdade é qualquer matriz de qualquer tamanho. Exemplo:
       ```matlab
       structure = [0  1  1  1  0  1
                    1 -1 -1  0  1 -1
@@ -51,7 +51,10 @@
       [P_index, n, matrix] = lmivar(3, structure);
       ```
 
-  - O retorno é `[P_index, n, matrix]` em que **n** é o total de variáveis escalares criadas; **P_index** é um número inteiro, índice da variável matricial criada; **matrix** é uma matriz com a estrutura declarada.
+  - O retorno é `[P_index, last_var, matrix]` em que 
+    - **P_index** é um número inteiro, índice da variável LMI criada; cada chamada de `lmivar(...)` incrementa este contador.
+    - **last_var** é o índice da última variável escalar criada; 
+    - **matrix** é uma matriz representando a estrutura declarada.
 
 Modelo da Inequação:
 

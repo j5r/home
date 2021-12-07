@@ -15,7 +15,7 @@
 
 ## Explicando melhor...
 
-- `[P_index, last_var, matrix] = lmivar(T, [D, t])`, em que `[D, t]` é uma matriz **Nx2** em que a estrutura da variável desejada contém **N** blocos-diagonais (veja o exemplo abaixo para ficar mais claro).
+- `[P_index, last_var, IDmatrix] = lmivar(T, [D, t])`, em que `[D, t]` é uma matriz **Nx2** em que a estrutura da variável desejada contém **N** blocos-diagonais (veja o exemplo abaixo para ficar mais claro).
 
   - **T** é o tipo de matriz
 
@@ -44,18 +44,22 @@
           ```
     - `T == 2` matriz cheia, `[D, t]` é uma matriz **1x2**. A variável criada será uma matriz retangular **Dxt**.
 
-    - `T == 3` outras estruturas, `[D, t]` na verdade é qualquer matriz de qualquer tamanho. Exemplo:
+    - `T == 3` outras estruturas, `[D, t]` na verdade é qualquer matriz de qualquer tamanho.
+        - Se você quer declarar entradas iguais na matriz, apenas entre com IDs repetidos nas posições desejadas.
+        - Se você quer declarar entradas distintas (variáveis distintas), entre com IDs distintos nas posições desejadas.
+        - Se você quer declarar algumas entradas iguais às de outras variáveis previamente declaradas, utilize o mesmo ID nas posições desejadas. Veja `IDmatrix` abaixo no item **retorno** da função.
+        - Os zeros permanecerão zeros (_hard zeroes_).
       ```matlab
-      structure = [0  1  1  1  0  1
-                   1 -1 -1  0  1 -1
-                   0  1 -1 -1  1  0]
+      structure = [ 0  11  11  11   0  12
+                   13  14  14   0   2   3
+                    0  11  15  16   1  10]
       [P_index, n, matrix] = lmivar(3, structure);
       ```
 
-  - O retorno é `[P_index, last_var, matrix]` em que 
+  - O retorno é `[P_index, last_var, IDmatrix]` em que 
     - **P_index** é um número inteiro, índice da variável LMI criada; cada chamada de `lmivar(...)` incrementa este contador.
     - **last_var** é o índice da última variável escalar criada; 
-    - **matrix** é uma matriz representando a estrutura declarada.
+    - **IDmatrix** é uma matriz representando a estrutura declarada. Cada entrada de `IDmatrix` tem o ID da variável escalar correspondente.
 
 Modelo da Inequação:
 

@@ -51,8 +51,8 @@
         - Os zeros permanecerão zeros (_hard zeroes_).
       ```matlab
       structure = [ 0  11  11  11   0  12
-                         13  14  14   0   2   3
-                          0  11  15  16   1  10]
+                       13  14  14   0   2   3
+                        0  11  15  16   1  10]
       [P_index, n, matrix] = lmivar(3, structure);
       ```
 

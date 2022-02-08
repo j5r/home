@@ -1,4 +1,8 @@
-# Como implementar LMIs no matlab
+# Sedumi - Matlab - Instalação
+1. [YALMIP](https://yalmip.github.io/tutorial/installation)
+2. [SeDuMi](https://github.com/sqlp/sedumi)
+
+# Como implementar LMIs no matlab com LMItoolbox
 
 ## Sequência da declaração
 

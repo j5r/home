@@ -2,17 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="refresh" content="3; URL='http://wa.me/5516994619378?text=Olá,%20Junior%21%0A%20Queria%20falar%20com%20você%20a%20respeito%20das%20aulas%20de%20matemática.%0APodemos%20conversar%3F'"/>
-  </head>
+    <meta http-equiv="refresh" content="6; URL='http://wa.me/5516994619378?text=Olá,%20Junior%21%0A%0AQueria%20falar%20com%20você%20a%20respeito%20das%20aulas%20de%20matemática.%0A%0APodemos%20conversar%3F'"/>
+  </head> 
+  <body>
+    <div>
+    <div id="txt" style="font-size:20px;">Redirecionando para o WhatsApp em <span id="countdown">5</span>s. . .</div>
+    <br><br>
+    <button onclick="jrpop()" style="font-size:20px;padding:10px;">
+    Clique para ver minha Home Page em uma nova guia. . .
+    </button>
+  </body>
   <script>
     jrpop = () => {window.open('https://j5r.github.io/home');};
+    
+    var timeleft = 5;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("txt").innerHTML = "Abrindo WhatsApp";
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft;
+  }
+  timeleft -= 1;
+}, 1000);
   </script>
-  <body onload="jrpop()">
-    <div style="font-size:16px;">
-    Redirecionando para o WhatsApp. . .
-      <br>
-      <br>
-    Abrindo minha Home Page em uma nova guia. . . .
-    </div>
-  </body>
 </html>

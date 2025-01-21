@@ -16,26 +16,33 @@ function cabecalho(){
 
 
     /* li formacao1 */
-    var _li_formacao1 = document.createElement("li")
+    /* var _li_formacao1 = document.createElement("li")
     _li_formacao1.innerText = "Licenciado em Matemática - UEMS 2015"
     _li_formacao1.setAttribute("name","formacao")
 
-    /* li formacao2 */
+    /.* li formacao2 *./
     var _li_formacao2 = document.createElement("li")
     _li_formacao2.innerText ="Mestre em Ciências: Matemática Computacional - ICMC/USP 2019"
     _li_formacao2.setAttribute("name","formacao")
+    
 
-    /* li formacao3 */
+    /.* li formacao3 *./
     var _li_formacao3 = document.createElement("li")
     _li_formacao3.innerText = "Doutorando em Ciências: Matemática Computacional - ICMC/USP 2019 - atual"
     _li_formacao3.setAttribute("name","formacao")
+    */
+
+    var _li_atuacao = document.createElement("li")
+    _li_atuacao.innerText = "Professor Substituto no INMA-UFMS (ago/2024-atual)"
+    _li_atuacao.setAttribute("name","formacao")
 
     /* anexando lis à ul */
     var _ul = document.createElement("ul")
     _ul.appendChild(_li_nome)
-    _ul.appendChild(_li_formacao1)
-    _ul.appendChild(_li_formacao2)
-    _ul.appendChild(_li_formacao3)
+    // _ul.appendChild(_li_formacao1)
+    // _ul.appendChild(_li_formacao2)
+    // _ul.appendChild(_li_formacao3)
+    _ul.appendChild(_li_atuacao)
 
 
     /* criando div-avatar */

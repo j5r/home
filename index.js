@@ -7,7 +7,7 @@ function cabecalho(){
     /* li nome */
     var _a_nome = document.createElement("a")
     _a_nome.setAttribute("id","nome")
-    _a_nome.setAttribute("href","https://www.icmc.usp.br/pessoas?id=19450383")
+    _a_nome.setAttribute("href","https://graduacao.ufms.br/cursos/2202/professores")
     _a_nome.innerText = "Junior Rodrigues Ribeiro"
 
     var _li_nome = document.createElement("li")

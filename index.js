@@ -24,13 +24,13 @@ function cabecalho(){
     var _li_formacao2 = document.createElement("li")
     _li_formacao2.innerText ="Mestre em Ciências: Matemática Computacional - ICMC/USP 2019"
     _li_formacao2.setAttribute("name","formacao")
-    
-
-    /.* li formacao3 *./
-    var _li_formacao3 = document.createElement("li")
-    _li_formacao3.innerText = "Doutorando em Ciências: Matemática Computacional - ICMC/USP 2019 - atual"
-    _li_formacao3.setAttribute("name","formacao")
     */
+
+    /* li formacao3 */
+    var _li_formacao3 = document.createElement("li")
+    _li_formacao3.innerText = "Doutorando em Ciências: Matemática Computacional - ICMC/USP 2024"
+    _li_formacao3.setAttribute("name","formacao")
+    
 
     var _li_atuacao = document.createElement("li")
     _li_atuacao.innerText = "Professor Substituto no INMA-UFMS (ago/2024-atual)"
@@ -41,7 +41,7 @@ function cabecalho(){
     _ul.appendChild(_li_nome)
     // _ul.appendChild(_li_formacao1)
     // _ul.appendChild(_li_formacao2)
-    // _ul.appendChild(_li_formacao3)
+    _ul.appendChild(_li_formacao3)
     _ul.appendChild(_li_atuacao)
 
 

@@ -1,0 +1,214 @@
+\author{Junior R. Ribeiro}
+\date{}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% general defs
+\def\dg{^\circ}
+\def\ç{\phantom{,}}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% packages
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{overlock} % main font
+%
+\PassOptionsToPackage{unicode,breaklinks=true}{hyperref}
+\usepackage{hyperref}
+%
+\usepackage{
+	amsfonts,
+	amsmath,
+	amssymb,
+	eulervm, % main font
+	dsfont,
+	graphicx,
+	multicol,
+	tikz,
+	enumitem,
+	etoolbox, % verificar com \ifclassloaded{beamer}
+	float,
+	quotes,
+	pgfplots,
+	cancel,
+	comment,
+	ifthen,
+	array, % para tabelas (para que a linha horizontal não fique grudada no conteúdo)    
+	alfabeto, % ***arquivo proprio
+	meusmathoperators, % ***arquivo proprio
+}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% settings
+\setlist[itemize,1]{label=\textcolor{blue}{$\blacktriangleright$}} % ao usar o enumitem
+\setlist[itemize,2]{label=\textcolor{red!70!magenta}{$\blacktriangleright$}}
+\setlist[itemize,3]{label=\textcolor{cyan!30!green}{$\blacktriangleright$}}
+%
+\usetikzlibrary{angles}
+%
+\pgfplotsset{width=7cm,compat=1.17}
+%
+\setlength{\extrarowheight}{12pt} % package array
+%
+\renewcommand{\CancelColor}{\color{red}}
+%
+\setlength{\parskip}{12pt}
+\setlength{\parindent}{18pt}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1.5pt}
+%
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=green!30!blue!98,
+	citecolor=black!30!green,
+}
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% environments
+\newenvironment{abcd}[1][]{
+	%%%%
+	\ifx&#1& % se vazio
+	\begin{enumerate}[label=(\,\alph*\,)]
+	\else % se nao vazio
+	\begin{multicols}{#1}
+		\begin{enumerate}[label=(\,\alph*\,)]
+			\fi
+			%%%%
+			\def\fechamento{
+			\ifx&#1&
+		\end{enumerate}
+		\else
+		\end{enumerate}
+	\end{multicols}
+	\fi
+}
+%%%%
+}{
+\fechamento
+}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% newcommands
+\newcommand{\jcases}[2]{
+	\left\{
+	\begin{array}{#1}
+		#2
+	\end{array}
+	\right.
+}
+
+
+\newcommand{\jbox}[1]{\par\noindent\fbox{
+		\parbox{.95\linewidth}{#1}
+	}\par}
+
+
+\newcommand{\jboxx}[1]{\par\noindent\fbox{\fbox{
+			\parbox{.95\linewidth}{#1}
+		}}\par}
+
+
+\newcommand{\jc}[2]{{\color{#1}#2}} % \jc{cor}{conteudo}
+
+
+\newcommand*{\grabto}[2]{\IfFileExists{#2}{}{\immediate\write18{curl \detokenize{#1 -o #2}}}}
+
+
+\newcommand{\fim}{
+	\newline\hfill {\Large\bf \jc{black!40!blue}{$\triangleright$} \jc{blue!80}{F}\jc{blue!40!cyan}{I}\jc{cyan}{M.}}
+}
+
+
+\makeatletter
+\newcommand{\imprimetitulo}{\noindent{\Large\bfseries\@title\null\par}}
+\makeatother
+
+
+
+\makeatletter %%%%%%%%%%%%%
+\newcommand{\xyshift}[2]{
+	\def\@jxshift{#1}
+	\def\@jyshift{#2}
+}
+\newcommand{\valores}[1]{
+	\def\@jvalores{#1}
+}
+\def\fromto(#1,#2) #3;{
+	\draw[line width=2.5pt,color=#3,opacity=.6] (#1,0) -- (#2,0);
+}
+
+\newcommand{\drawintervalo}[3]{
+	\begin{scope}[xshift=\@jxshift cm,yshift=\@jyshift cm]
+		\draw[->, >=stealth, very thick] (#1,0) -- (#2,0);
+		\foreach \k in \@jvalores
+		\draw[thick] (\k,-.15) -- (\k,.15);
+		#3
+	\end{scope}
+}
+
+% \xyshift{0}{-1} % scope shift
+% \valores{-3,-1,0,1}  % ticks
+% \drawintervalo{-4}{4}{
+%   \fromto(-4,-3) black!30!green;
+%   \fromto(-3,-1) red;
+%   % pode continuar desenhando coisas aqui
+% }
+\makeatother %%%%%%%%%%%%%
+
+
+\newcommand{\setcoord}[3]{% nome do ponto, abscissa, nome da funcao
+	\pgfmathsetmacro{\yval}{#3(#2)}
+	\pgfmathsetmacro{\temporaljval}{\yval}
+	\coordinate (#1) at (#2, \yval);
+	\let\jval\temporaljval
+}
+
+
+\newcommand{\setcoordf}[2]{\setcoord{#1}{#2}{f}} % nome do ponto, abscissa
+
+
+\newcommand{\jrgreen}{black!30!green}
+
+%%%%%%%%%%%%% TEXTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\jrarticleisloaded}{
+	\PackageWarning{meu-documento}{Estou usando o ARTICLE.}
+	% Código para outras classes
+	%
+	%
+
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIM ARTICLE
+%%%%%%%%%%%%% PROVAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\jrprovasisloaded}{
+	\PackageWarning{meu-documento}{Estou usando o PROVAS.}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIM PROVAS
+\makeatletter
+\@ifclassloaded{article}{\jrarticleisloaded
+	\@ifclassloaded{provas}{}{
+		\RequirePackage[left=2cm,right=2cm,top=1cm,bottom=2cm]{geometry}
+	}
+}{}
+\@ifclassloaded{provas}{\jrprovasisloaded}{}
+\@ifclassloaded{book}{
+	\renewcommand{\theHchapter}{Appendix.\thechapter}
+	% corrige referencias de links dos apendices com hyperref
+}
+\makeatother
+
+
+
+
+
+
+%%%%%%%%%%%%%
+\makeatletter
+\@ifclassloaded{beamer}{\usepackage{meubeamer}}{}
+\makeatother

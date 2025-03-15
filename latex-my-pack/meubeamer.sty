@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% inicio BEAMER
+\PackageWarning{meu-documento}{Estou usando o Beamer, e vou justificar o texto.}
+
+\definecolor{theorycolor}{RGB}{0, 50, 200}      % Azul
+\definecolor{examplecolor}{RGB}{200, 200, 100}  % Caramelo
+\definecolor{warningcolor}{RGB}{200, 100, 100}  % Verde
+
+
+\newcommand{\teoria}{\setbeamercolor{structure}{fg=theorycolor}}
+\newcommand{\exemplo}{\setbeamercolor{structure}{fg=examplecolor}}
+\newcommand{\atencao}{\setbeamercolor{structure}{fg=warningcolor}}
+
+
+
+\usetheme{Madrid}
+\usepackage{ragged2e} % Para o comando \justifying
+\addtobeamertemplate{block begin}{}{\justifying}
+\apptocmd{\frame}{}{\justifying}{} % justificando todos os frames
+
+%
+%
+\setbeamersize{text margin left=.8cm, text margin right=.8cm} % margens
+\setbeamertemplate{navigation symbols}{}
+%
+%
+\newcommand{\inseresecao}{\begin{frame}[plain]%{}%{}
+        \vfill
+        \vfill
+        \noindent\Large$\blacktriangleright$ {\bf\insertsection}
+        \vfill
+        \vfill
+    \end{frame}
+}
+%
+%    
+\newcommand{\inseresubsecao}{\begin{frame}[plain]%{}%{}
+        \vfill
+        \vfill
+        \noindent\Large$\blacktriangleright$ {\bf\insertsection} \newline
+        \indent\large $\triangleright$ \insertsubsection
+        \vfill
+        \vfill
+    \end{frame}
+}
+%
+%
+\AtBeginDocument{
+    \teoria
+    \begin{frame}[plain]{}%{•}
+        \maketitle
+    \end{frame}
+    
+    \makeatletter
+    \ifstrempty{\beamer@tocsections}{}{
+    \begin{frame}[plain,allowframebreaks]{}%{•}
+      \tableofcontents
+    \end{frame}
+    }
+    
+    \makeatother
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIM BEAMER
+

@@ -1,0 +1,6 @@
+Entre com o comando
+
+texhash
+
+
+em um terminal de administrador e pronto!

@@ -1,7 +1,3 @@
-\author{Junior R. Ribeiro}
-\date{}
-
-
 %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% general defs
 \def\dg{^\circ}
@@ -48,6 +44,7 @@
 \setlist[itemize,3]{label=\textcolor{cyan!30!green}{$\blacktriangleright$}}
 %
 \usetikzlibrary{angles}
+\usetikzlibrary{decorations.pathmorphing}
 %
 \pgfplotsset{width=7cm,compat=1.17}
 %
@@ -140,14 +137,46 @@
 	\def\@jvalores{#1}
 }
 \def\fromto(#1,#2) #3;{
-	\draw[line width=2.5pt,color=#3,opacity=.6] (#1,0) -- (#2,0);
+	\draw[decorate, decoration={snake, amplitude=3pt, segment length=8pt},color=#3,opacity=.7,line width=1pt] (#1,0) -- (#2,0);
+}
+\def\dotopen #1;{
+\filldraw[thick,fill=white] (#1,0) circle (3pt);
+}
+
+\def\dotopenp #1;{
+\filldraw[thick,fill=white] (#1,0) circle (3pt) node[below=4pt]{#1};
+}
+
+\def\dotclosed#1 #2;{
+\filldraw[thick,fill=#2] (#1,0) circle (3pt);
+}
+
+\def\dotclosedp#1 #2;{
+\filldraw[thick,fill=#2] (#1,0) circle (3pt) node[below=4pt]{#1};
 }
 
 \newcommand{\drawintervalo}[3]{
 	\begin{scope}[xshift=\@jxshift cm,yshift=\@jyshift cm]
-		\draw[->, >=stealth, very thick] (#1,0) -- (#2,0);
+		\draw[->, >=stealth, ultra thick] (#1,0) -- (#2,0);
 		\foreach \k in \@jvalores
 		\draw[thick] (\k,-.15) -- (\k,.15);
+		#3
+	\end{scope}
+}
+
+\newcommand{\drawposicaotick}[2]{
+\draw[thick] (#1,-.15)  node[below=3pt]{#2} -- (#1,.15);
+}
+
+\newcommand{\drawlongposicaotick}[2]{
+\draw[thick] (#1,-.85)  node[below=3pt]{#2} -- (#1,.15);
+}
+
+\newcommand{\draweixonumerado}[3]{
+	\begin{scope}[xshift=\@jxshift cm,yshift=\@jyshift cm]
+		\draw[->, >=stealth, ultra thick] (#1,0) -- (#2,0);
+		\foreach \k in \@jvalores
+		\draw[thick] (\k,-.15)  node[below=3pt]{\k} -- (\k,.15);
 		#3
 	\end{scope}
 }
@@ -212,3 +241,60 @@
 \makeatletter
 \@ifclassloaded{beamer}{\usepackage{meubeamer}}{}
 \makeatother
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\author{Junior R. Ribeiro \\[6pt] \href{mailto:junior.r@ufms.br}{junior.r@ufms.br}}
+\date{}
+
+\definecolor{roxo}{RGB}{180, 80, 180}
+\def\bb#1{\jc{blue}{#1}}
+\def\cc#1{\jc{cyan}{#1}}
+\def\mm#1{\jc{magenta}{#1}}
+\def\gg#1{\jc{black!30!green}{#1}}
+\def\ff#1{\jc{roxo}{#1}}
+\def\oo#1{\jc{orange}{#1}}
+\def\rr#1{\jc{red}{#1}}
+
+\newcommand{\ajuda}{\newline{\small
+\begin{tabular}{r|l}\hline
+\tt /definecolor\{roxo\}\{RGB\}\{180, 80, 180\} & \\
+\tt /def/bb                                     & jc-blue\\
+\tt /def/cc                                     & jc-cyan\\
+\tt /def/mm                                     & jc-magenta\\
+\tt /def/gg                                     & jc-black!30!green\\
+\tt /def/ff                                     & jc-roxo\\
+\tt /def/oo                                     & jc-orange\\
+\tt /def/rr                                     & jc-red\\
+\tt /xyshift\{0\}\{0\};                         & shift <x> e <y> no scope\\
+\tt /valores\{2,3,4\};                          & valores destacados no eixo\\
+\tt /drawintervalo\{-2\}\{6\}\bb\{              & eixo é desenhado de <a> a <b>\\
+\tt /fromto(1.3,5.7) red;                       & destacando o intervalo de <a> a <b> com uma <cor>\\
+\tt /dotopen 1.3;                               & bola aberta em <a>\\
+\tt /dotopenp 1.3;                              & bola aberta em <a> + print nº abaixo do eixo\\
+\tt /dotclosed 5.7 red;                         & bola fechada em <a> com uma <cor>\\
+\tt /dotclosedp 5.7 red; \bb\}                  & bola fechada em <a> com uma <cor>  + print nº abaixo do eixo\\
+\tt /drawposicaotick\{posicao\}\{texto\}        & escreve o <texto> abaixo da posicao no eixo\\
+\tt /drawlongposicaotick\{posicao\}\{texto\}    & igual anterior, mas com <texto> ainda mais para baixo
+\tt /draweixonumerado\{a\}\{b\}\{\#\}           & eixo é desenhado de <a> a <b> com os rótulos dos /valores\\
+& no item \#, pode-se usar, por exemplo, um /drawposicaotick ou /drawlongposicaotick\\
+\hline
+\end{tabular}}
+}

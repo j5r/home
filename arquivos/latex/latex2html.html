@@ -41,11 +41,18 @@
 
             <div style="background:#736;border-radius:15px;padding:35px">
             <code id="hcode" style="font-size:15px;margin:0px;">
-                &lt;script type="text/x-mathjax-config"&gt; <br>
-                MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}}); <br>
-                &lt;/script&gt; <br>
-                &lt;script type="text/javascript" <br>
-                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;<br>
+                &lt;script&gt; <br>
+                    MathJax = {<br>
+                      tex: {<br>
+                        inlineMath: [['$','$'], ['\(','\)']],<br>
+                        displayMath: [['$$','$$'],['\[','\]']]<br>
+                        },/*<br>
+                      svg: {<br>
+                        fontCache: 'global'<br>
+                      }*/<br>
+                    };<br>
+            &ly;/script&gt;<br>
+                &lt;script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"&gt;<br>
                 &lt;/script&gt;
             </code><br>
             <span class="copy" onclick="j5rcopy('hcode')">Clique aqui para copiar.</span>

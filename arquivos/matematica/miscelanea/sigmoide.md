@@ -23,7 +23,8 @@ fontCache: 'global'
 # Modelo Sigmoide
 
 Um modelo 'populacional' muito conhecido pode ser empregado em diversas situações em que ocorre 'saturação', ou seja, estabilização no crescimento da população. Curvas com formato de "S" cumprem esse requisito, como o modelo abaixo. A função passa no ponto $(0, a/2)$ e sua saturação é em $a$ (a função cresce até o valor $a$).
-\[f(x)= \dfrac{a}{1+e^{-bx}}.\]
+
+$f(x)= \dfrac{a}{1+e^{-bx}}.$
 
 Com $a=5$ e $b=0.8$, o gráfico fica assim:
 

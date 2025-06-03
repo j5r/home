@@ -22,15 +22,13 @@ fontCache: 'global'
 
 # Modelo Sigmoide
 
-Um modelo 'populacional' muito conhecido pode ser empregado em diversas situações em que ocorre 'saturação', ou seja, estabilização no crescimento da população. Curvas com formato de "S" cumprem esse requisito, como o modelo abaixo.
-$$
-f(x)= \dfrac{a}{1+e^{-bx}}.
-$$
+Um modelo 'populacional' muito conhecido pode ser empregado em diversas situações em que ocorre 'saturação', ou seja, estabilização no crescimento da população. Curvas com formato de "S" cumprem esse requisito, como o modelo abaixo. A função passa no ponto $(0, a/2)$ e sua saturação é em $a$ (a função cresce até o valor $a$).
+\[f(x)= \dfrac{a}{1+e^{-bx}}.\]
 
 Com $a=4$ e $b=0.8$, o gráfico fica assim:
 
-<iframe src="https://www.desmos.com/calculator/blmhm1vmzz?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
+<iframe src="https://www.desmos.com/calculator/k5hktyl3le?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
 
-
+<br><br><br>
 Você pode utilizar o Octave [online](https://octave-online.net/) ou [offline](https://octave.org/download) para utilizar a função 
 [sigmoide.m](https://github.com/j5r/home/blob/d0a173c071badf8da4eafd6a3210c38577665d90/arquivos/_diversos/sigmoide.m). Com ela, você pode passar alguns dados e verificar qual é o melhor valor para o parâmetro **b** para que a função fique melhor ajustada ao seus dados.

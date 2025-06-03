@@ -25,7 +25,7 @@ fontCache: 'global'
 Um modelo 'populacional' muito conhecido pode ser empregado em diversas situações em que ocorre 'saturação', ou seja, estabilização no crescimento da população. Curvas com formato de "S" cumprem esse requisito, como o modelo abaixo. A função passa no ponto $(0, a/2)$ e sua saturação é em $a$ (a função cresce até o valor $a$).
 \[f(x)= \dfrac{a}{1+e^{-bx}}.\]
 
-Com $a=4$ e $b=0.8$, o gráfico fica assim:
+Com $a=5$ e $b=0.8$, o gráfico fica assim:
 
 <iframe src="https://www.desmos.com/calculator/k5hktyl3le?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
 

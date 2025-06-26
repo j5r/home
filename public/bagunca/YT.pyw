@@ -59,7 +59,7 @@ def renomear_arquivos_da_pasta(pasta):
 
 
 
-def melhorar_som(input_filename, output_filename, margem_db=0.1):
+def melhorar_som(input_filename, output_filename, margem_db:float|None=0.1):
     """
     Normaliza o volume do áudio com base no pico máximo.
     Se o áudio já estiver perto do máximo, não altera.
@@ -74,7 +74,7 @@ def melhorar_som(input_filename, output_filename, margem_db=0.1):
     # 1. Executa o ffmpeg com astats e captura a saída
     cmd_astats = [
         "ffmpeg", "-i", input_filename,
-        "-af", "astats=metadata=1:reset=1",
+        "-af", "astats=metadata=1:reset=0",
         "-f", "null", "-"
     ]
 
@@ -88,29 +88,38 @@ def melhorar_som(input_filename, output_filename, margem_db=0.1):
     stderr = result.stderr
 
     # 2. Procura o "Max level" (pico máximo) na saída
-    match = re.search(r"Overall.*?Max level:\s*([\d.]+)", stderr, re.DOTALL)
+    #match = re.search(r"Overall.*?Max level:\s*([\d.]+)", stderr, re.DOTALL)
+    matches = re.findall(r"Max level:\s*([\d.]+)", stderr)
+    
 
     if not stderr:
         print(f"\n⛔[\033[31m{input_filename}\033[m]\n")
         return
 
     
-    if not match:
+    if not matches:
         print(f"\n❌[\033[31m{input_filename}\033[m]\n")
         return
 
-    max_level = float(match.group(1))
+    
+    max_level = max(float(val) for val in matches)
+    print(f"Max level: {max_level} dBFS", end='\t')
+    if margem_db is None:
+        print('')
+        return
 
     # 3. Se já estiver suficientemente alto, copia o arquivo
+    """
     if max_level >= 1.0 - margem_db:
-        print("\n❎[\033[33m{input_filename}\033[m]\n")
+        print(f"\n❎[\033[33m{input_filename}\033[m]\n")
         subprocess.run(["ffmpeg", "-y", "-i", input_filename, output_filename],
                        stdout=subprocess.DEVNULL,
                        stderr=subprocess.DEVNULL)
         return
+    """
 
-    # 4. Calcula o ganho necessário
-    gain = 1.0 / (.2+max_level)
+    # 4. Calcula o ganho necessário        
+    gain = 1.0 / (.05+max_level)
 
     # 5. Aplica o ganho
     cmd_volume = [
@@ -123,7 +132,8 @@ def melhorar_som(input_filename, output_filename, margem_db=0.1):
                    stderr=subprocess.DEVNULL)    
     os.remove(input_filename)
     os.rename(output_filename, input_filename)
-    print(f"\n✅[\033[32m{input_filename}\033[m]🟢\n")
+    print(f"\n✅[\033[32m|{max_level =}|{gain =}|\n{input_filename}\033[m]🟢\n")
+    melhorar_som(input_filename,input_filename,None)
 
 
 def obter_urls_playlist(playlist_url):

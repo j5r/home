@@ -33,7 +33,7 @@ function cabecalho(){
     
 
     var _li_atuacao = document.createElement("li")
-    _li_atuacao.innerText = "Professor Substituto no INMA-UFMS (ago/2024-atual)"
+    _li_atuacao.innerText = "Professor Substituto no INMA-UFMS (ago/2024-jul/2025)"
     _li_atuacao.setAttribute("name","formacao")
 
     /* anexando lis à ul */
